@@ -10,7 +10,7 @@ namespace BlacknutApiClient
 
         public string ApiUrl { get; set; }
 
-        #region Madatory Headers
+        #region Mandatory Headers
 
         [DisplayName("Content-Type")]
         public string ContentType { get; private set; } = "application/json";
@@ -23,7 +23,7 @@ namespace BlacknutApiClient
 
         #endregion
 
-        #region Auth Headers
+        #region Auth Header
 
         [DisplayName("X-Blk-Partner-Secret")]
         public string Secret { get; set; }
