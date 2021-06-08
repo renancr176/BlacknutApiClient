@@ -44,7 +44,7 @@ namespace BlacknutApiClient
                 .WithHeader(ReflectionExtensions.GetPropertyDisplayName<BlacknutCredentials>(i => i.AcceptLanguage), Credentials.AcceptLanguage)
                 .WithHeader(ReflectionExtensions.GetPropertyDisplayName<BlacknutCredentials>(i => i.XBlkUserAgent), Credentials.XBlkUserAgent)
                 .WithHeader(ReflectionExtensions.GetPropertyDisplayName<BlacknutCredentials>(i => i.Secret), Credentials.Secret)
-                .PostJsonAsync(AuthenticationData.RefreshToken);
+                .PostJsonAsync(new { refreshToken = AuthenticationData.RefreshToken });
 
             AuthenticationData = await result.GetJsonAsync<AuthenticationData>();
         }
