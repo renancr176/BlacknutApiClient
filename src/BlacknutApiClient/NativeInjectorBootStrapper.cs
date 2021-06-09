@@ -12,6 +12,7 @@ namespace BlacknutApiClient
         {
             services.AddSingleton<IBlacknutApiClient, BlacknutApiClientOptionsConfiguration>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ISubscriptionService, SubscriptionService>();
         }
     }
 
