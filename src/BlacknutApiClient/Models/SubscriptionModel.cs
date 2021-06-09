@@ -1,5 +1,7 @@
 ﻿using System;
 using BlacknutApiClient.Enums;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace BlacknutApiClient.Models
 {
@@ -40,6 +42,7 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// Status of the subscription:{Pending, Active, Suspended, Canceled}
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public SubscriptionStatusEnum Status { get; set; }
     }
 }

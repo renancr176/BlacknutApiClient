@@ -14,6 +14,7 @@ namespace BlacknutApiClient
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISubscriptionService, SubscriptionService>();
             services.AddScoped<IStreamService, StreamService>();
+            services.AddScoped<IGameService, GameService>();
         }
     }
 

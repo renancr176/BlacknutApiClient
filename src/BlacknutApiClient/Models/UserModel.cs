@@ -1,5 +1,7 @@
 ﻿using System;
 using BlacknutApiClient.Enums;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace BlacknutApiClient.Models
 {
@@ -28,6 +30,7 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// Informations about user profile:{Generic, Kids, PreTeens, Teens}
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public UserProfileEnum UserProfile { get; set; }
         /// <summary>
         /// If yes, it is the main account. Otherwise, it is asub profile
