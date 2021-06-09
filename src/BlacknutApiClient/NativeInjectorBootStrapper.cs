@@ -13,13 +13,14 @@ namespace BlacknutApiClient
             services.AddSingleton<IBlacknutApiClient, BlacknutApiClientOptionsConfiguration>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISubscriptionService, SubscriptionService>();
+            services.AddScoped<IStreamService, StreamService>();
         }
     }
 
     public class BlacknutApiClientOptionsConfiguration : BlacknutApiClient
     {
         public BlacknutApiClientOptionsConfiguration(IOptions<BlacknutCredentials> options) 
-            : base(options.Value)
+            : base(options?.Value ?? new BlacknutCredentials())
         {
         }
     }
