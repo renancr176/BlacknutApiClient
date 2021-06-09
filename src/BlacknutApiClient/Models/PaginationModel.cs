@@ -3,7 +3,6 @@
 namespace BlacknutApiClient.Models
 {
     public class PaginationModel<T>
-        where T : class
     {
         /// <summary>
         /// Number of element per page, default value set to 50.

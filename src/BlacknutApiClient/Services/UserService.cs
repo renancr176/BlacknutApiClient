@@ -17,7 +17,7 @@ namespace BlacknutApiClient.Services
             _client = client;
         }
 
-        public async Task<ClientResponseModel<PaginationModel<UserModel>>> GetAsync(int page, int limit)
+        public async Task<ClientResponseModel<PaginationModel<UserModel>>> GetAsync(int page = 1, int limit = 50)
         {
             var response = new ClientResponseModel<PaginationModel<UserModel>>();
 
@@ -28,13 +28,9 @@ namespace BlacknutApiClient.Services
                     .SetQueryParams(new { page, limit })
                     .GetAsync();
 
+                response.Data = await _client.GetPaginationAsync<UserModel>(result);
                 var users = await result.GetJsonAsync<IEnumerable<UserModel>>();
-                //var paginationData = result.ResponseMessage.Headers.GetValues("meta");
-
-                response.Data = new PaginationModel<UserModel>()
-                {
-                    Data = users
-                };
+                response.Data.Data = users;
             }
             catch (FlurlHttpException e)
             {
@@ -116,6 +112,47 @@ namespace BlacknutApiClient.Services
             catch (FlurlHttpException e)
             {
                 response = await _client.GetErrorsAsync<UserModel>(e);
+            }
+
+            return response;
+        }
+
+        public async Task<ClientResponseModel<IEnumerable<SubscriptionModel>>> GetSubscriptions(Guid userId)
+        {
+            var response = new ClientResponseModel<IEnumerable<SubscriptionModel>>();
+
+            try
+            {
+                response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{userId}/subscriptions")
+                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
+                    .GetJsonAsync<IEnumerable<SubscriptionModel>>();
+            }
+            catch (FlurlHttpException e)
+            {
+                response = await _client.GetErrorsAsync<IEnumerable<SubscriptionModel>>(e);
+            }
+
+            return response;
+        }
+
+        public async Task<ClientResponseModel<PaginationModel<StreamModel>>> GetStreams(Guid userId, int page = 1, int limit = 50)
+        {
+            var response = new ClientResponseModel<PaginationModel<StreamModel>>();
+
+            try
+            {
+                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/users")
+                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
+                    .SetQueryParams(new { page, limit })
+                    .GetAsync();
+
+                response.Data = await _client.GetPaginationAsync<StreamModel>(result);
+                var streams = await result.GetJsonAsync<IEnumerable<StreamModel>>();
+                response.Data.Data = streams;
+            }
+            catch (FlurlHttpException e)
+            {
+                response = await _client.GetErrorsAsync<PaginationModel<StreamModel>>(e);
             }
 
             return response;

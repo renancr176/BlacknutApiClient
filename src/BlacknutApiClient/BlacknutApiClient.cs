@@ -57,5 +57,13 @@ namespace BlacknutApiClient
                 Erros = erros
             };
         }
+
+        public async Task<PaginationModel<T>> GetPaginationAsync<T>(IFlurlResponse response)
+        {
+            // TODO: Check how to obtain the "meta" object of pagination info.
+            //var pagination = result.ResponseMessage.Headers.GetValues("meta");
+
+            return new PaginationModel<T>();
+        }
     }
 }

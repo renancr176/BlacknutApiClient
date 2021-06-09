@@ -11,5 +11,7 @@ namespace BlacknutApiClient.Interfaces
         public IFlurlRequest BaseUrl { get; }
 
         public Task<ClientResponseModel<T>> GetErrorsAsync<T>(FlurlHttpException exception);
+
+        public Task<PaginationModel<T>> GetPaginationAsync<T>(IFlurlResponse response);
     }
 }
