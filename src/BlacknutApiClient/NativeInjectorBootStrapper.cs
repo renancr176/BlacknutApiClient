@@ -6,9 +6,9 @@ using Microsoft.Extensions.Options;
 
 namespace BlacknutApiClient
 {
-    public static class BlacknutNativeInjectorBootStrapper
+    public static class NativeInjectorBootStrapper
     {
-        public static void RegisterServices(IServiceCollection services)
+        public static void BlacknutApiClientRegisterServices(this IServiceCollection services)
         {
             services.AddSingleton<IBlacknutApiClient, BlacknutApiClientOptionsConfiguration>();
             services.AddScoped<IUserService, UserService>();

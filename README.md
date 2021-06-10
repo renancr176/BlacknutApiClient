@@ -38,5 +38,5 @@ On Startup add to the ConfigureServices this tow code lines as follow
     public void ConfigureServices(IServiceCollection services)
     {
 	    services.Configure<BlacknutCredentials>(Configuration.GetSection(BlacknutCredentials.configSection));
-		BlacknutNativeInjectorBootStrapper.RegisterServices(services);
+		services.BlacknutApiClientRegisterServices();
 	}
