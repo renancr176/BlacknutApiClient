@@ -4,7 +4,7 @@
 
 Unofficial client for DotNet, this project map all [Blacknut API](http://www.blacknut.com) endpoints described on documentation version 1.12 from 18-02-2021.
 
-This project uses [Flurl](https://flurl.dev/) as HTTP client to easily headle the requests.
+This project uses [Flurl](https://flurl.dev/) as HTTP client to easily handle the requests.
 
 ## Configuration
 
