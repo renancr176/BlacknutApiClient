@@ -40,3 +40,11 @@ On Startup add to the ConfigureServices this tow code lines as follow
 		services.Configure<BlacknutCredentials>(Configuration.GetSection(BlacknutCredentials.configSection));
 		services.BlacknutApiClientRegisterServices();
 	}
+
+
+## Available services
+
+ - [User](src/BlacknutApiClient/Interfaces/Services/IUserService.cs)
+ - [Subscription](src/BlacknutApiClient/Interfaces/Services/ISubscriptionService.cs)
+ - [Stream](src/BlacknutApiClient/Interfaces/Services/IStreamService.cs)
+ - [Game](src/BlacknutApiClient/Interfaces/Services/IGameService.cs)
