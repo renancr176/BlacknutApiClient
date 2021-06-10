@@ -25,7 +25,7 @@ namespace BlacknutApiClient.Services
             {
                 var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/users")
                     .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
-                    .SetQueryParams(new { page, limit })
+                    .SetQueryParams(new { page_number = page, page_limit = limit })
                     .GetAsync();
 
                 response.Data = await _client.GetPaginationAsync<UserModel>(result);
@@ -40,7 +40,7 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<UserModel>> SearchAsync(string partnerId, string email)
+        public async Task<ClientResponseModel<UserModel>> SearchAsync(Guid partnerId, string email)
         {
             var response = new ClientResponseModel<UserModel>();
 
@@ -48,7 +48,7 @@ namespace BlacknutApiClient.Services
             {
                 response.Data = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/users/search")
                     .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
-                    .SetQueryParams(new {partnerId, email})
+                    .SetQueryParams(new { partner_id = partnerId, email })
                     .GetJsonAsync<UserModel>();
             }
             catch (FlurlHttpException e)
@@ -97,15 +97,15 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<UserModel>> UpdatePartnerIdAsync(Guid userId, Guid oldPartnetId, Guid newPartnerId)
+        public async Task<ClientResponseModel<UserModel>> UpdatePartnerIdAsync(Guid id, Guid oldPartnerID, Guid newPartnerID)
         {
             var response = new ClientResponseModel<UserModel>();
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{userId}/updatePartnerID")
+                var result = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{id}/updatePartnerID")
                     .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
-                    .PostJsonAsync(new { oldPartnetId, newPartnerId });
+                    .PostJsonAsync(new { oldPartnerID, newPartnerID });
 
                 response.Data = await result.GetJsonAsync<UserModel>();
             }
@@ -117,13 +117,13 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<IEnumerable<SubscriptionModel>>> GetSubscriptions(Guid userId)
+        public async Task<ClientResponseModel<IEnumerable<SubscriptionModel>>> GetSubscriptions(Guid id)
         {
             var response = new ClientResponseModel<IEnumerable<SubscriptionModel>>();
 
             try
             {
-                response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{userId}/subscriptions")
+                response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{id}/subscriptions")
                     .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .GetJsonAsync<IEnumerable<SubscriptionModel>>();
             }
@@ -135,15 +135,15 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<PaginationModel<StreamModel>>> GetStreams(Guid userId, int page = 1, int limit = 50)
+        public async Task<ClientResponseModel<PaginationModel<StreamModel>>> GetStreams(Guid id, int page = 1, int limit = 50)
         {
             var response = new ClientResponseModel<PaginationModel<StreamModel>>();
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/users")
+                var result = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{id}/streams")
                     .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
-                    .SetQueryParams(new { page, limit })
+                    .SetQueryParams(new { page_number = page, page_limit = limit })
                     .GetAsync();
 
                 response.Data = await _client.GetPaginationAsync<StreamModel>(result);
@@ -158,13 +158,13 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<IEnumerable<UserModel>>> GetProfilesAsync(Guid userId)
+        public async Task<ClientResponseModel<IEnumerable<UserModel>>> GetProfilesAsync(Guid id)
         {
             var response = new ClientResponseModel<IEnumerable<UserModel>>();
 
             try
             {
-                response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{userId}/profiles")
+                response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{id}/profiles")
                     .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .GetJsonAsync<IEnumerable<UserModel>>();
             }
@@ -176,13 +176,13 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<UserTokenModel>> CreateTokenAsync(Guid userId)
+        public async Task<ClientResponseModel<UserTokenModel>> CreateTokenAsync(Guid id)
         {
             var response = new ClientResponseModel<UserTokenModel>();
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{userId}/token")
+                var result = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{id}/token")
                     .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .PostAsync();
 
