@@ -19,6 +19,6 @@ namespace BlacknutApiClient.Interfaces.Services
         /// </summary>
         /// <param name="id">This is the Blacknut game UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<GameModel>> GetById(Guid id);
+        Task<ClientResponseModel<GameModel>> GetByIdAsync(Guid id);
     }
 }
