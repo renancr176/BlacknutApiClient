@@ -49,9 +49,16 @@ On Startup add to the ConfigureServices this tow code lines as follow
  - [Stream](src/BlacknutApiClient/Interfaces/Services/IStreamService.cs)
  - [Game](src/BlacknutApiClient/Interfaces/Services/IGameService.cs)
 
+## Test Authentication
 
-## See doc on test branch
+[Blacknut API.postman_collection.json](docs/Blacknut%20API.postman_collection.json)
+
+## For test
 
 Use this branch only for testing configuration, see Swagger documentation (Maped all client services methods) and see services usage example.
 
 [Test Branch](https://github.com/renancr176/BlacknutApiClient/tree/ToTestOnly)
+
+Documentation via Postman collection
+
+[Blacknut API Client.postman_collection.json](https://github.com/renancr176/BlacknutApiClient/blob/ToTestOnly/docs/Blacknut%20API%20Client.postman_collection.json)
