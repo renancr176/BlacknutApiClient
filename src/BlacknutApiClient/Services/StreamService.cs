@@ -26,7 +26,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 var requestBuild = _client.BaseUrl.AppendPathSegment("/api/v1/partner/streams")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .SetQueryParams(((PagedRequest)request).ParseQueryParams());
 
                 if (request.Data != null)
@@ -53,7 +52,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/stream/{id}")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .GetJsonAsync<StreamModel>();
             }
             catch (FlurlHttpException e)

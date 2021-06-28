@@ -27,7 +27,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription/update")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .PutJsonAsync(data);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -47,7 +46,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription/suspend")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .PutJsonAsync(data);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -67,7 +65,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription/reactivate")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .PutJsonAsync(data);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -87,7 +84,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription/cancel")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .PutJsonAsync(data);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -107,7 +103,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription/attach")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .PutJsonAsync(data);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -129,7 +124,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .PostJsonAsync(request);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -149,7 +143,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/subscription/{id}")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .GetJsonAsync<SubscriptionModel>();
             }
             catch (FlurlHttpException e)
@@ -169,7 +162,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 var result = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/subscription/{id}")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .PutJsonAsync(request);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();

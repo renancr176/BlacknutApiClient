@@ -36,7 +36,8 @@ namespace BlacknutApiClient
             var url = new Url(AuthenticationClient.Credentials.ApiUrl)
                 .WithHeader(ReflectionExtensions.GetPropertyDisplayName<BlacknutCredentials>(i => i.ContentType), AuthenticationClient.Credentials.ContentType)
                 .WithHeader(ReflectionExtensions.GetPropertyDisplayName<BlacknutCredentials>(i => i.AcceptLanguage), AuthenticationClient.Credentials.AcceptLanguage)
-                .WithHeader(ReflectionExtensions.GetPropertyDisplayName<BlacknutCredentials>(i => i.XBlkUserAgent), AuthenticationClient.Credentials.XBlkUserAgent);
+                .WithHeader(ReflectionExtensions.GetPropertyDisplayName<BlacknutCredentials>(i => i.XBlkUserAgent), AuthenticationClient.Credentials.XBlkUserAgent)
+                .WithOAuthBearerToken(AuthenticationClient.AuthenticationData.Token);
 
             return url;
         }

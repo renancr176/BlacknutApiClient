@@ -26,7 +26,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/games")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .SetQueryParams(request.ParseQueryParams())
                     .GetAsync();
 
@@ -49,7 +48,6 @@ namespace BlacknutApiClient.Services
             try
             {
                 response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/game/{id}")
-                    .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
                     .GetJsonAsync<GameModel>();
             }
             catch (FlurlHttpException e)
