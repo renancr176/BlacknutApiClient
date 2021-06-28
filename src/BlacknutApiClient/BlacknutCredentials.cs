@@ -26,7 +26,7 @@ namespace BlacknutApiClient
         #region Auth Header
 
         [DisplayName("X-Blk-Partner-Secret")]
-        public string Secret { get; set; }
+        public string Secret { get; set; } = String.Empty;
 
         #endregion
 
@@ -47,8 +47,8 @@ namespace BlacknutApiClient
 
     public class PartnerCredentials
     {
-        public string PartnerCode { get; set; }
-        public string PartnetSecret { get; set; }
+        public string PartnerCode { get; set; } = String.Empty;
+        public string PartnetSecret { get; set; } = String.Empty;
 
         public bool Ok()
         {
