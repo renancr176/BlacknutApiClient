@@ -24,7 +24,7 @@ namespace TesteApi.Controllers
         [HttpGet(Name = "Get all users with paged result")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<PaginationModel<UserModel>>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<PaginationModel<UserModel>>))]
-        private async Task<IActionResult> GetAsync(PagedRequest request)
+        public async Task<IActionResult> GetAsync(PagedRequest request)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace TesteApi.Controllers
         [HttpGet("search", Name = "Search user by email")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<UserModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<UserModel>))]
-        private async Task<IActionResult> SearchAsync(UserSearchRequest request)
+        public async Task<IActionResult> SearchAsync(UserSearchRequest request)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace TesteApi.Controllers
         [HttpPost(Name = "Create new user")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<UserModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<UserModel>))]
-        private async Task<IActionResult> CreateAsync()
+        public async Task<IActionResult> CreateAsync()
         {
             try
             {
@@ -99,7 +99,7 @@ namespace TesteApi.Controllers
         [HttpGet("{id}", Name = "Get user by id")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<UserModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<UserModel>))]
-        private async Task<IActionResult> GetByIdAsync(Guid id)
+        public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             try
             {
@@ -121,10 +121,10 @@ namespace TesteApi.Controllers
             }
         }
         
-        [HttpGet("{id}", Name = "Update user partner Id")]
+        [HttpPut("{id}", Name = "Update user partner Id")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<UserModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<UserModel>))]
-        private async Task<IActionResult> UpdatePartnerIdAsync(Guid id, UpdatePartnerRequest request)
+        public async Task<IActionResult> UpdatePartnerIdAsync(Guid id, UpdatePartnerRequest request)
         {
             try
             {
@@ -150,7 +150,7 @@ namespace TesteApi.Controllers
         [HttpGet("{id}", Name = "Get all subscriptions of a user (active and cancelled)")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<IEnumerable<SubscriptionModel>>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<IEnumerable<SubscriptionModel>>))]
-        private async Task<IActionResult> GetSubscriptionsAsync(Guid id)
+        public async Task<IActionResult> GetSubscriptionsAsync(Guid id)
         {
             try
             {
@@ -175,7 +175,7 @@ namespace TesteApi.Controllers
         [HttpGet("{id}", Name = "Get user streams")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<PaginationModel<StreamModel>>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<PaginationModel<StreamModel>>))]
-        private async Task<IActionResult> GetStreamsAsync(Guid id, PagedRequest request)
+        public async Task<IActionResult> GetStreamsAsync(Guid id, PagedRequest request)
         {
             try
             {
@@ -200,7 +200,7 @@ namespace TesteApi.Controllers
         [HttpGet("{id}", Name = "Get profiles/subaccounts of a user")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<IEnumerable<UserModel>>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<IEnumerable<UserModel>>))]
-        private async Task<IActionResult> GetProfilesAsync(Guid id)
+        public async Task<IActionResult> GetProfilesAsync(Guid id)
         {
             try
             {
@@ -222,10 +222,10 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "Create a user token for the user")]
+        [HttpPost("{id}", Name = "Create a user token for the user")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<UserTokenModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<UserTokenModel>))]
-        private async Task<IActionResult> CreateTokenAsync(Guid id)
+        public async Task<IActionResult> CreateTokenAsync(Guid id)
         {
             try
             {
