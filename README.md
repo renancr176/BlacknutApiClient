@@ -48,3 +48,10 @@ On Startup add to the ConfigureServices this tow code lines as follow
  - [Subscription](src/BlacknutApiClient/Interfaces/Services/ISubscriptionService.cs)
  - [Stream](src/BlacknutApiClient/Interfaces/Services/IStreamService.cs)
  - [Game](src/BlacknutApiClient/Interfaces/Services/IGameService.cs)
+
+
+## See doc on test branch
+
+Use this branch only for testing configuration, see Swagger documentation (Maped all client services methods) and see services usage example.
+
+[Test Branch](https://github.com/renancr176/BlacknutApiClient/tree/ToTestOnly)
