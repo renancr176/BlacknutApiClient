@@ -74,7 +74,7 @@ namespace TesteApi.Controllers
 
         #region Update product
 
-        [HttpPut("{id}/product", Name = "Update an existing subscription from subscription Blacknut UUID")]
+        [HttpPut("{id}/Product", Name = "Update an existing subscription from subscription Blacknut UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> UpdateByIdAsync(Guid id, UpdateProductRequest request)
@@ -99,7 +99,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("partner/{id}/product", Name = "Update an existing subscription from subscription Blacknut UUID by partner UUID")]
+        [HttpPut("Partner/{id}/Product", Name = "Update an existing subscription from subscription Blacknut UUID by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> UpdateByPartnerIdAsync(Guid id, UpdateProductRequest request)
@@ -124,14 +124,14 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("redemption/{redemptionCode}/product", Name = "Update an existing subscription from subscription Blacknut UUID by redemptionCode")]
+        [HttpPut("Redemption/{code}/Product", Name = "Update an existing subscription from subscription Blacknut UUID by redemptionCode")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
-        public async Task<IActionResult> UpdateByRedemptionCodeAsync(string redemptionCode, UpdateProductRequest request)
+        public async Task<IActionResult> UpdateByRedemptionCodeAsync(string code, UpdateProductRequest request)
         {
             try
             {
-                var result = await _subscriptionService.UpdateByRedemptionCodeAsync(redemptionCode, request);
+                var result = await _subscriptionService.UpdateByRedemptionCodeAsync(code, request);
 
                 if (result.Success)
                     return Ok(result);
@@ -153,7 +153,7 @@ namespace TesteApi.Controllers
 
         #region Suspend
 
-        [HttpPut("{id}/suspend", Name = "Suspend an existing subscription")]
+        [HttpPut("{id}/Suspend", Name = "Suspend an existing subscription")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> SuspendByIdAsync(Guid id)
@@ -178,7 +178,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("partner/{id}/suspend", Name = "Suspend an existing subscription by partner UUID")]
+        [HttpPut("Partner/{id}/Suspend", Name = "Suspend an existing subscription by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> SuspendByPartnerIdAsync(Guid id)
@@ -203,14 +203,14 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("redemption/{redemptionCode}/suspend", Name = "Suspend an existing subscription by redemptionCode")]
+        [HttpPut("Redemption/{code}/Suspend", Name = "Suspend an existing subscription by redemptionCode")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
-        public async Task<IActionResult> SuspendByRedemptionCodeAsync(string redemptionCode)
+        public async Task<IActionResult> SuspendByRedemptionCodeAsync(string code)
         {
             try
             {
-                var result = await _subscriptionService.SuspendByRedemptionCodeAsync(redemptionCode);
+                var result = await _subscriptionService.SuspendByRedemptionCodeAsync(code);
 
                 if (result.Success)
                     return Ok(result);
@@ -232,7 +232,7 @@ namespace TesteApi.Controllers
 
         #region Reactive
 
-        [HttpPut("{id}/reactive", Name = "Reactivate a suspended subscription")]
+        [HttpPut("{id}/Reactive", Name = "Reactivate a suspended subscription")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> ReactivateByIdAsync(Guid id)
@@ -257,7 +257,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("partner/{id}/reactive", Name = "Reactivate a suspended subscription by partner UUID")]
+        [HttpPut("Partner/{id}/Reactive", Name = "Reactivate a suspended subscription by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> ReactivateByPartnerIdAsync(Guid id)
@@ -282,14 +282,14 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("redemption/{redemptionCode}/reactive", Name = "Reactivate a suspended subscription by redemptionCode")]
+        [HttpPut("Redemption/{code}/Reactive", Name = "Reactivate a suspended subscription by redemptionCode")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
-        public async Task<IActionResult> ReactivateByRedemptionCodeAsync(string redemptionCode)
+        public async Task<IActionResult> ReactivateByRedemptionCodeAsync(string code)
         {
             try
             {
-                var result = await _subscriptionService.ReactivateByRedemptionCodeAsync(redemptionCode);
+                var result = await _subscriptionService.ReactivateByRedemptionCodeAsync(code);
 
                 if (result.Success)
                     return Ok(result);
@@ -311,7 +311,7 @@ namespace TesteApi.Controllers
 
         #region Cancel
 
-        [HttpPut("{id}/cancel", Name = "Cancel an active subscription from a field")]
+        [HttpPut("{id}/Cancel", Name = "Cancel an active subscription from a field")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> CancelByIdAsync(Guid id, SubscriptionCancelRequest request)
@@ -336,7 +336,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("partner/{id}/cancel", Name = "Cancel an active subscription from a field by partner UUID")]
+        [HttpPut("Partner/{id}/Cancel", Name = "Cancel an active subscription from a field by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> CancelByPartnerIdAsync(Guid id, SubscriptionCancelRequest request)
@@ -361,14 +361,14 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("redemption/{redemptionCode}/cancel", Name = "Cancel an active subscription from a field by redemptionCode")]
+        [HttpPut("Redemption/{code}/Cancel", Name = "Cancel an active subscription from a field by redemptionCode")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
-        public async Task<IActionResult> CancelByRedemptionCodeAsync(string redemptionCode, SubscriptionCancelRequest request)
+        public async Task<IActionResult> CancelByRedemptionCodeAsync(string code, SubscriptionCancelRequest request)
         {
             try
             {
-                var result = await _subscriptionService.CancelByRedemptionCodeAsync(redemptionCode, request);
+                var result = await _subscriptionService.CancelByRedemptionCodeAsync(code, request);
 
                 if (result.Success)
                     return Ok(result);
@@ -390,7 +390,7 @@ namespace TesteApi.Controllers
 
         #region Attach
 
-        [HttpPut("{id}/attach", Name = "Attach a subscription to a user")]
+        [HttpPut("{id}/Attach", Name = "Attach a subscription to a user")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> AttachByIdAsync(Guid id, SubscriptionAttachRequest request)
@@ -415,7 +415,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("partner/{id}/attach", Name = "Attach a subscription to a user by partner UUID")]
+        [HttpPut("Partner/{id}/Attach", Name = "Attach a subscription to a user by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> AttachByPartnerIdAsync(Guid id, SubscriptionAttachRequest request)
@@ -440,14 +440,14 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("redemption/{redemptionCode}/attach", Name = "Attach a subscription to a user by redemptionCode")]
+        [HttpPut("Redemption/{code}/Attach", Name = "Attach a subscription to a user by redemptionCode")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
-        public async Task<IActionResult> AttachByRedemptionCodeAsync(string redemptionCode, SubscriptionAttachRequest request)
+        public async Task<IActionResult> AttachByRedemptionCodeAsync(string code, SubscriptionAttachRequest request)
         {
             try
             {
-                var result = await _subscriptionService.AttachByRedemptionCodeAsync(redemptionCode, request);
+                var result = await _subscriptionService.AttachByRedemptionCodeAsync(code, request);
 
                 if (result.Success)
                     return Ok(result);
