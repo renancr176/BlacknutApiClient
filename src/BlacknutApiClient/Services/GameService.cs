@@ -25,7 +25,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/games")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/games")
                     .SetQueryParams(request.ParseQueryParams())
                     .GetAsync();
 
@@ -47,7 +47,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/game/{id}")
+                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/game/{id}")
                     .GetJsonAsync<GameModel>();
             }
             catch (FlurlHttpException e)

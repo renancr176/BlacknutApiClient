@@ -25,7 +25,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/users")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/users")
                     .SetQueryParams(request.ParseQueryParams())
                     .GetAsync();
 
@@ -47,7 +47,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                response.Data = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/users/search")
+                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/users/search")
                     .SetQueryParams(request.ParseQueryParams())
                     .GetJsonAsync<UserModel>();
             }
@@ -65,7 +65,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/user")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/user")
                     .PostAsync();
 
                 response.Data = await result.GetJsonAsync<UserModel>();
@@ -84,7 +84,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{id}")
+                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}")
                     .GetJsonAsync<UserModel>();
             }
             catch (FlurlHttpException e)
@@ -101,7 +101,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{id}/updatePartnerID")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}/updatePartnerID")
                     .PostJsonAsync(request);
 
                 response.Data = await result.GetJsonAsync<UserModel>();
@@ -120,7 +120,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{id}/subscriptions")
+                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}/subscriptions")
                     .GetJsonAsync<IEnumerable<SubscriptionModel>>();
             }
             catch (FlurlHttpException e)
@@ -137,7 +137,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{id}/streams")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}/streams")
                     .GetAsync();
 
                 response.Data = await _client.GetPaginationAsync<StreamModel>(result);
@@ -158,7 +158,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{id}/profiles")
+                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}/profiles")
                     .GetJsonAsync<IEnumerable<UserModel>>();
             }
             catch (FlurlHttpException e)
@@ -175,7 +175,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/user/{id}/token")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}/token")
                     .PostAsync();
 
                 response.Data = await result.GetJsonAsync<UserTokenModel>();

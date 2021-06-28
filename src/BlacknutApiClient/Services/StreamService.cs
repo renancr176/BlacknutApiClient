@@ -25,7 +25,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var requestBuild = _client.BaseUrl.AppendPathSegment("/api/v1/partner/streams")
+                var requestBuild = (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/streams")
                     .SetQueryParams(((PagedRequest)request).ParseQueryParams());
 
                 if (request.Data != null)
@@ -51,7 +51,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/stream/{id}")
+                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/stream/{id}")
                     .GetJsonAsync<StreamModel>();
             }
             catch (FlurlHttpException e)
