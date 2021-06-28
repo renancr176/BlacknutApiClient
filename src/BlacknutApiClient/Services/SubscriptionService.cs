@@ -159,6 +159,8 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
+        #region Update product
+
         public async Task<ClientResponseModel<SubscriptionModel>> UpdateByIdAsync(Guid id, UpdateProductRequest request)
         {
             var response = new ClientResponseModel<SubscriptionModel>();
@@ -189,6 +191,10 @@ namespace BlacknutApiClient.Services
             return await UpdateAsync(new { redemptionCode, request.NewProductId, request.OldProductId });
         }
 
+        #endregion
+
+        #region Suspend
+        
         public async Task<ClientResponseModel<SubscriptionModel>> SuspendByIdAsync(Guid id)
         {
             return await SuspendAsync(new { uuid = id });
@@ -203,6 +209,10 @@ namespace BlacknutApiClient.Services
         {
             return await SuspendAsync(new { redemptionCode });
         }
+
+        #endregion
+
+        #region Reactive
 
         public async Task<ClientResponseModel<SubscriptionModel>> ReactivateByIdAsync(Guid id)
         {
@@ -219,6 +229,10 @@ namespace BlacknutApiClient.Services
             return await ReactivateAsync(new { redemptionCode });
         }
 
+        #endregion
+
+        #region Cancel
+
         public async Task<ClientResponseModel<SubscriptionModel>> CancelByIdAsync(Guid id, SubscriptionCancelRequest request)
         {
             return await CancelAsync(new { uuid = id, request.EndDate });
@@ -234,6 +248,10 @@ namespace BlacknutApiClient.Services
             return await CancelAsync(new { redemptionCode, request.EndDate });
         }
 
+        #endregion
+
+        #region Attach
+        
         public async Task<ClientResponseModel<SubscriptionModel>> AttachByIdAsync(Guid id, SubscriptionAttachRequest request)
         {
             return await AttachAsync(new { uuid = id, request.UserId });
@@ -248,5 +266,7 @@ namespace BlacknutApiClient.Services
         {
             return await AttachAsync(new { redemptionCode, request.UserId });
         }
+
+        #endregion
     }
 }

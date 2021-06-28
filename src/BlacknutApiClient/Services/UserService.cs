@@ -118,7 +118,7 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<IEnumerable<SubscriptionModel>>> GetSubscriptions(Guid id)
+        public async Task<ClientResponseModel<IEnumerable<SubscriptionModel>>> GetSubscriptionsAsync(Guid id)
         {
             var response = new ClientResponseModel<IEnumerable<SubscriptionModel>>();
 
@@ -136,7 +136,7 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<PaginationModel<StreamModel>>> GetStreams(Guid id, PagedRequest request)
+        public async Task<ClientResponseModel<PaginationModel<StreamModel>>> GetStreamsAsync(Guid id, PagedRequest request)
         {
             var response = new ClientResponseModel<PaginationModel<StreamModel>>();
 
