@@ -14,13 +14,13 @@ namespace BlacknutApiClient
 
         public AuthenticationClient(BlacknutCredentials credentials)
         {
+            credentials.XBlkUserAgent =
+                string.Format(credentials.XBlkUserAgent, credentials.PartnerCredentials?.PartnerCode);
+
             if (!credentials.Ok())
                 throw new Exception("Credentials not set.");
 
             Credentials = credentials;
-
-            Credentials.XBlkUserAgent =
-                string.Format(Credentials.XBlkUserAgent, Credentials.PartnerCredentials.PartnerCode);
         }
 
         public async Task AuthenticateAsync()
