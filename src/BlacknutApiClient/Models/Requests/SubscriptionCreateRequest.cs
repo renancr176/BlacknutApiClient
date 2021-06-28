@@ -1,15 +1,17 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace BlacknutApiClient.Models
+namespace BlacknutApiClient.Models.Requests
 {
-    public class SubscriptionCreationModel
+    public class SubscriptionCreateRequest
     {
         /// <summary>
         /// This is the product ID of the Blacknut plan
         /// </summary>
+        [Required]
         public Guid ProductID { get; set; }
         /// <summary>
-        /// This parameter is optiona
+        /// This parameter is optional
         /// This is the Blacknut user UUID
         /// </summary>
         public Guid? UserID { get; set; }
@@ -28,10 +30,5 @@ namespace BlacknutApiClient.Models
         /// This is the URL that will be called as an HTTP POST request without body by Blacknut Backend after subscription is redeemed
         /// </summary>
         public string CallbackURL { get; set; }
-
-        public SubscriptionCreationModel(Guid productId)
-        {
-            ProductID = productId;
-        }
     }
 }

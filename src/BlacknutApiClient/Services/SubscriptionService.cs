@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models;
+using BlacknutApiClient.Models.Requests;
 using Flurl.Http;
 
 namespace BlacknutApiClient.Services
@@ -120,7 +121,7 @@ namespace BlacknutApiClient.Services
 
         #endregion
 
-        public async Task<ClientResponseModel<SubscriptionModel>> CreateAsync(SubscriptionCreationModel model)
+        public async Task<ClientResponseModel<SubscriptionModel>> CreateAsync(SubscriptionCreateRequest request)
         {
             var response = new ClientResponseModel<SubscriptionModel>();
 
@@ -128,7 +129,7 @@ namespace BlacknutApiClient.Services
             {
                 var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription")
                     .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
-                    .PostJsonAsync(model);
+                    .PostJsonAsync(request);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
             }
@@ -158,7 +159,7 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> UpdateByIdAsync(Guid id, Guid oldProductID, Guid newProductID)
+        public async Task<ClientResponseModel<SubscriptionModel>> UpdateByIdAsync(Guid id, UpdateProductRequest request)
         {
             var response = new ClientResponseModel<SubscriptionModel>();
 
@@ -166,7 +167,7 @@ namespace BlacknutApiClient.Services
             {
                 var result = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/subscription/{id}")
                     .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
-                    .PutJsonAsync(new { oldProductID, newProductID });
+                    .PutJsonAsync(request);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
             }
@@ -178,14 +179,14 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> UpdateByPartnerIdAsync(Guid partnerID, Guid oldProductID, Guid newProductID)
+        public async Task<ClientResponseModel<SubscriptionModel>> UpdateByPartnerIdAsync(Guid partnerID, UpdateProductRequest request)
         {
-            return await UpdateAsync(new {partnerID, oldProductID, newProductID});
+            return await UpdateAsync(new {partnerID, request.NewProductId, request.OldProductId });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> UpdateByRedemptionCodeAsync(string redemptionCode, Guid oldProductID, Guid newProductID)
+        public async Task<ClientResponseModel<SubscriptionModel>> UpdateByRedemptionCodeAsync(string redemptionCode, UpdateProductRequest request)
         {
-            return await UpdateAsync(new { redemptionCode, oldProductID, newProductID });
+            return await UpdateAsync(new { redemptionCode, request.NewProductId, request.OldProductId });
         }
 
         public async Task<ClientResponseModel<SubscriptionModel>> SuspendByIdAsync(Guid id)
@@ -218,34 +219,34 @@ namespace BlacknutApiClient.Services
             return await ReactivateAsync(new { redemptionCode });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> CancelByIdAsync(Guid id, DateTime? endDate = null)
+        public async Task<ClientResponseModel<SubscriptionModel>> CancelByIdAsync(Guid id, SubscriptionCancelRequest request)
         {
-            return await CancelAsync(new { uuid = id, endDate });
+            return await CancelAsync(new { uuid = id, request.EndDate });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> CancelByPartnerIdAsync(Guid partnerID, DateTime? endDate = null)
+        public async Task<ClientResponseModel<SubscriptionModel>> CancelByPartnerIdAsync(Guid partnerID, SubscriptionCancelRequest request)
         {
-            return await CancelAsync(new { partnerID, endDate });
+            return await CancelAsync(new { partnerID, request.EndDate });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> CancelByRedemptionCodeAsync(string redemptionCode, DateTime? endDate = null)
+        public async Task<ClientResponseModel<SubscriptionModel>> CancelByRedemptionCodeAsync(string redemptionCode, SubscriptionCancelRequest request)
         {
-            return await CancelAsync(new { redemptionCode, endDate });
+            return await CancelAsync(new { redemptionCode, request.EndDate });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> AttachByIdAsync(Guid id, Guid userId)
+        public async Task<ClientResponseModel<SubscriptionModel>> AttachByIdAsync(Guid id, SubscriptionAttachRequest request)
         {
-            return await AttachAsync(new { uuid = id, userId });
+            return await AttachAsync(new { uuid = id, request.UserId });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> AttachByPartnerIdAsync(Guid partnerID, Guid userId)
+        public async Task<ClientResponseModel<SubscriptionModel>> AttachByPartnerIdAsync(Guid partnerID, SubscriptionAttachRequest request)
         {
-            return await AttachAsync(new { partnerID, userId });
+            return await AttachAsync(new { partnerID, request.UserId });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> AttachByRedemptionCodeAsync(string redemptionCode, Guid userId)
+        public async Task<ClientResponseModel<SubscriptionModel>> AttachByRedemptionCodeAsync(string redemptionCode, SubscriptionAttachRequest request)
         {
-            return await AttachAsync(new { redemptionCode, userId });
+            return await AttachAsync(new { redemptionCode, request.UserId });
         }
     }
 }
