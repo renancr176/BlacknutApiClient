@@ -24,7 +24,7 @@ namespace TesteApi
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blacknut Client Test API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blacknut API Client - Test API", Version = "v1" });
             });
 
             services.Configure<BlacknutCredentials>(Configuration.GetSection(BlacknutCredentials.configSection));

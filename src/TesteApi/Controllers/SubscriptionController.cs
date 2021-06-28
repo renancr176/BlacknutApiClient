@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
+using BlacknutApiClient.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -22,8 +23,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPost(Name = "Create a new subscription")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> CreateAsync(SubscriptionCreateRequest request)
         {
             try
@@ -37,18 +38,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpGet("{id}", Name = "Get subscription by id")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             try
@@ -62,11 +63,11 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -74,8 +75,8 @@ namespace TesteApi.Controllers
         #region Update product
 
         [HttpPut("{id}/product", Name = "Update an existing subscription from subscription Blacknut UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> UpdateByIdAsync(Guid id, UpdateProductRequest request)
         {
             try
@@ -89,18 +90,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpPut("partner/{id}/product", Name = "Update an existing subscription from subscription Blacknut UUID by partner UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> UpdateByPartnerIdAsync(Guid id, UpdateProductRequest request)
         {
             try
@@ -114,18 +115,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpPut("redemption/{redemptionCode}/product", Name = "Update an existing subscription from subscription Blacknut UUID by redemptionCode")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> UpdateByRedemptionCodeAsync(string redemptionCode, UpdateProductRequest request)
         {
             try
@@ -139,11 +140,11 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -153,8 +154,8 @@ namespace TesteApi.Controllers
         #region Suspend
 
         [HttpPut("{id}/suspend", Name = "Suspend an existing subscription")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> SuspendByIdAsync(Guid id)
         {
             try
@@ -168,18 +169,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpPut("partner/{id}/suspend", Name = "Suspend an existing subscription by partner UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> SuspendByPartnerIdAsync(Guid id)
         {
             try
@@ -193,18 +194,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpPut("redemption/{redemptionCode}/suspend", Name = "Suspend an existing subscription by redemptionCode")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> SuspendByRedemptionCodeAsync(string redemptionCode)
         {
             try
@@ -218,11 +219,11 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -232,8 +233,8 @@ namespace TesteApi.Controllers
         #region Reactive
 
         [HttpPut("{id}/reactive", Name = "Reactivate a suspended subscription")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> ReactivateByIdAsync(Guid id)
         {
             try
@@ -247,18 +248,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpPut("partner/{id}/reactive", Name = "Reactivate a suspended subscription by partner UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> ReactivateByPartnerIdAsync(Guid id)
         {
             try
@@ -272,18 +273,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpPut("redemption/{redemptionCode}/reactive", Name = "Reactivate a suspended subscription by redemptionCode")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> ReactivateByRedemptionCodeAsync(string redemptionCode)
         {
             try
@@ -297,11 +298,11 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -311,8 +312,8 @@ namespace TesteApi.Controllers
         #region Cancel
 
         [HttpPut("{id}/cancel", Name = "Cancel an active subscription from a field")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> CancelByIdAsync(Guid id, SubscriptionCancelRequest request)
         {
             try
@@ -326,18 +327,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpPut("partner/{id}/cancel", Name = "Cancel an active subscription from a field by partner UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> CancelByPartnerIdAsync(Guid id, SubscriptionCancelRequest request)
         {
             try
@@ -351,18 +352,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpPut("redemption/{redemptionCode}/cancel", Name = "Cancel an active subscription from a field by redemptionCode")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> CancelByRedemptionCodeAsync(string redemptionCode, SubscriptionCancelRequest request)
         {
             try
@@ -376,11 +377,11 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -390,8 +391,8 @@ namespace TesteApi.Controllers
         #region Attach
 
         [HttpPut("{id}/attach", Name = "Attach a subscription to a user")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> AttachByIdAsync(Guid id, SubscriptionAttachRequest request)
         {
             try
@@ -405,18 +406,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpPut("partner/{id}/attach", Name = "Attach a subscription to a user by partner UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> AttachByPartnerIdAsync(Guid id, SubscriptionAttachRequest request)
         {
             try
@@ -430,18 +431,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpPut("redemption/{redemptionCode}/attach", Name = "Attach a subscription to a user by redemptionCode")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
         public async Task<IActionResult> AttachByRedemptionCodeAsync(string redemptionCode, SubscriptionAttachRequest request)
         {
             try
@@ -455,11 +456,11 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }

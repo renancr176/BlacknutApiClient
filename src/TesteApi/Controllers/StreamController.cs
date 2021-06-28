@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
+using BlacknutApiClient.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -22,8 +23,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpGet(Name = "List existing streams with paged result")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<PaginationModel<StreamModel>>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<PaginationModel<StreamModel>>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<PaginationModel<StreamModel>>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<PaginationModel<StreamModel>>))]
         public async Task<IActionResult> GetAsync(PagedRequest<StreamGetRequest> request)
         {
             try
@@ -37,18 +38,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<PaginationModel<StreamModel>>()
+                return BadRequest(new ClientResponse<PaginationModel<StreamModel>>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpGet("{id}", Name = "Filters streams started after startDate")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<StreamModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<StreamModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<StreamModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<StreamModel>))]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             try
@@ -62,11 +63,11 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<StreamModel>()
+                return BadRequest(new ClientResponse<StreamModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
+using BlacknutApiClient.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -22,8 +23,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpGet(Name = "List existing games with paged result")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<PaginationModel<GameModel>>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<PaginationModel<GameModel>>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<PaginationModel<GameModel>>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<PaginationModel<GameModel>>))]
         public async Task<IActionResult> GetAsync(PagedRequest request)
         {
             try
@@ -37,18 +38,18 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<PaginationModel<GameModel>>()
+                return BadRequest(new ClientResponse<PaginationModel<GameModel>>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
         [HttpGet("{id}", Name = "Get one particular game")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<GameModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<GameModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<GameModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<GameModel>))]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             try
@@ -62,11 +63,11 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<GameModel>()
+                return BadRequest(new ClientResponse<GameModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
