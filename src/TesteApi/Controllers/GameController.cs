@@ -12,23 +12,23 @@ namespace TesteApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class StreamController : ControllerBase
+    public class GameController : ControllerBase
     {
-        private readonly IStreamService _streamService;
+        private readonly IGameService _gameService;
 
-        public StreamController(IStreamService streamService)
+        public GameController(IGameService gameService)
         {
-            _streamService = streamService;
+            _gameService = gameService;
         }
 
-        [HttpGet(Name = "List existing streams with paged result")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<PaginationModel<StreamModel>>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<PaginationModel<StreamModel>>))]
-        public async Task<IActionResult> GetAsync(PagedRequest<StreamGetRequest> request)
+        [HttpGet(Name = "List existing games with paged result")]
+        [SwaggerResponse(200, Type = typeof(ClientResponseModel<PaginationModel<GameModel>>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponseModel<PaginationModel<GameModel>>))]
+        public async Task<IActionResult> GetAsync(PagedRequest request)
         {
             try
             {
-                var result = await _streamService.GetAsync(request);
+                var result = await _gameService.GetAsync(request);
 
                 if (result.Success)
                     return Ok(result);
@@ -37,7 +37,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<PaginationModel<StreamModel>>()
+                return BadRequest(new ClientResponseModel<PaginationModel<GameModel>>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -46,14 +46,14 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "Filters streams started after startDate")]
-        [SwaggerResponse(200, Type = typeof(ClientResponseModel<StreamModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponseModel<StreamModel>))]
+        [HttpGet("{id}", Name = "Get one particular game")]
+        [SwaggerResponse(200, Type = typeof(ClientResponseModel<GameModel>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponseModel<GameModel>))]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             try
             {
-                var result = await _streamService.GetByIdAsync(id);
+                var result = await _gameService.GetByIdAsync(id);
 
                 if (result.Success)
                     return Ok(result);
@@ -62,7 +62,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponseModel<StreamModel>()
+                return BadRequest(new ClientResponseModel<GameModel>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
