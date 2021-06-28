@@ -46,7 +46,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// </summary>
         /// <param name="id">This is the Blacknut user UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<IEnumerable<SubscriptionModel>>> GetSubscriptions(Guid id);
+        Task<ClientResponseModel<IEnumerable<SubscriptionModel>>> GetSubscriptionsAsync(Guid id);
         /// <summary>
         /// Get user streams
         /// </summary>
@@ -54,7 +54,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="page">This is the page number you want to retrieve</param>
         /// <param name="limit">This is the count of users per page</param>
         /// <returns></returns>
-        Task<ClientResponseModel<PaginationModel<StreamModel>>> GetStreams(Guid id, PagedRequest request);
+        Task<ClientResponseModel<PaginationModel<StreamModel>>> GetStreamsAsync(Guid id, PagedRequest request);
         /// <summary>
         /// Get profiles/subaccounts of a user
         /// </summary>
