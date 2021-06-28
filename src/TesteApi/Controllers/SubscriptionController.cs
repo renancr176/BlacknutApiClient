@@ -10,6 +10,8 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace TesteApi.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class SubscriptionController : ControllerBase
     {
         private readonly ISubscriptionService _subscriptionService;
