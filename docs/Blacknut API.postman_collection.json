@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "9508ff09-1785-4a6c-adb3-cda1dcf96b33",
+		"name": "Blacknut API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					},
+					{
+						"key": "X-Blk-User-Agent",
+						"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+						"type": "text"
+					},
+					{
+						"key": "X-Blk-Partner-Secret",
+						"value": "{{Secret}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"partnerCode\": \"{{PartnerCode}}\",\r\n    \"partnetSecret\": \"{{PartnetSecret}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ApiUrl}}/api/v1/partner/token",
+					"host": [
+						"{{ApiUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"partner",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ApiUrl",
+			"value": "https://staging-api.blacknut.net"
+		},
+		{
+			"key": "Secret",
+			"value": "secret"
+		},
+		{
+			"key": "PartnerCode",
+			"value": "secret"
+		},
+		{
+			"key": "PartnetSecret",
+			"value": "secret"
+		}
+	]
+}
