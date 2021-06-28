@@ -147,7 +147,7 @@ namespace TesteApi.Controllers
         }
 
 
-        [HttpGet("{id}", Name = "Get all subscriptions of a user (active and cancelled)")]
+        [HttpGet("{id}/subscriptions", Name = "Get all subscriptions of a user (active and cancelled)")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<IEnumerable<SubscriptionModel>>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<IEnumerable<SubscriptionModel>>))]
         public async Task<IActionResult> GetSubscriptionsAsync(Guid id)
@@ -172,7 +172,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "Get user streams")]
+        [HttpGet("{id}/streams", Name = "Get user streams")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<PaginationModel<StreamModel>>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<PaginationModel<StreamModel>>))]
         public async Task<IActionResult> GetStreamsAsync(Guid id, PagedRequest request)
@@ -197,7 +197,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "Get profiles/subaccounts of a user")]
+        [HttpGet("{id}/profiles", Name = "Get profiles/subaccounts of a user")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<IEnumerable<UserModel>>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<IEnumerable<UserModel>>))]
         public async Task<IActionResult> GetProfilesAsync(Guid id)
@@ -222,7 +222,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPost("{id}", Name = "Create a user token for the user")]
+        [HttpPost("{id}/token", Name = "Create a user token for the user")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<UserTokenModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<UserTokenModel>))]
         public async Task<IActionResult> CreateTokenAsync(Guid id)

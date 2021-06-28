@@ -98,7 +98,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("partner/{id}/product", Name = "Update an existing subscription from subscription Blacknut UUID")]
+        [HttpPut("partner/{id}/product", Name = "Update an existing subscription from subscription Blacknut UUID by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         public async Task<IActionResult> UpdateByPartnerIdAsync(Guid id, UpdateProductRequest request)
@@ -123,7 +123,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("redemption/{redemptionCode}/product", Name = "Update an existing subscription from subscription Blacknut UUID")]
+        [HttpPut("redemption/{redemptionCode}/product", Name = "Update an existing subscription from subscription Blacknut UUID by redemptionCode")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         public async Task<IActionResult> UpdateByRedemptionCodeAsync(string redemptionCode, UpdateProductRequest request)
@@ -177,7 +177,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("partner/{id}/suspend", Name = "Suspend an existing subscription")]
+        [HttpPut("partner/{id}/suspend", Name = "Suspend an existing subscription by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         public async Task<IActionResult> SuspendByPartnerIdAsync(Guid id)
@@ -202,7 +202,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("redemption/{redemptionCode}/suspend", Name = "Suspend an existing subscription")]
+        [HttpPut("redemption/{redemptionCode}/suspend", Name = "Suspend an existing subscription by redemptionCode")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         public async Task<IActionResult> SuspendByRedemptionCodeAsync(string redemptionCode)
@@ -256,7 +256,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("partner/{id}/reactive", Name = "Reactivate a suspended subscription")]
+        [HttpPut("partner/{id}/reactive", Name = "Reactivate a suspended subscription by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         public async Task<IActionResult> ReactivateByPartnerIdAsync(Guid id)
@@ -281,7 +281,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("redemption/{redemptionCode}/reactive", Name = "Reactivate a suspended subscription")]
+        [HttpPut("redemption/{redemptionCode}/reactive", Name = "Reactivate a suspended subscription by redemptionCode")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         public async Task<IActionResult> ReactivateByRedemptionCodeAsync(string redemptionCode)
@@ -335,7 +335,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("partner/{id}/cancel", Name = "Cancel an active subscription from a field")]
+        [HttpPut("partner/{id}/cancel", Name = "Cancel an active subscription from a field by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         public async Task<IActionResult> CancelByPartnerIdAsync(Guid id, SubscriptionCancelRequest request)
@@ -360,7 +360,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("redemption/{redemptionCode}/cancel", Name = "Cancel an active subscription from a field")]
+        [HttpPut("redemption/{redemptionCode}/cancel", Name = "Cancel an active subscription from a field by redemptionCode")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         public async Task<IActionResult> CancelByRedemptionCodeAsync(string redemptionCode, SubscriptionCancelRequest request)
@@ -414,7 +414,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("partner/{id}/attach", Name = "Attach a subscription to a user")]
+        [HttpPut("partner/{id}/attach", Name = "Attach a subscription to a user by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         public async Task<IActionResult> AttachByPartnerIdAsync(Guid id, SubscriptionAttachRequest request)
@@ -439,7 +439,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPut("redemption/{redemptionCode}/attach", Name = "Attach a subscription to a user")]
+        [HttpPut("redemption/{redemptionCode}/attach", Name = "Attach a subscription to a user by redemptionCode")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<SubscriptionModel>))]
         public async Task<IActionResult> AttachByRedemptionCodeAsync(string redemptionCode, SubscriptionAttachRequest request)
