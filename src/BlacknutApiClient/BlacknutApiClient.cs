@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BlacknutApiClient.Extensions;
 using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Models;
+using BlacknutApiClient.Models.Responses;
 using Flurl;
 using Flurl.Http;
 
@@ -40,17 +41,17 @@ namespace BlacknutApiClient
             return url;
         }
 
-        public async Task<ClientResponseModel<T>> GetErrorsAsync<T>(FlurlHttpException exception)
+        public async Task<ClientResponse<T>> GetErrorsAsync<T>(FlurlHttpException exception)
         {
-            IEnumerable<ResponseErrorModel> erros = new List<ResponseErrorModel>();
+            IEnumerable<ErrorResponse> erros = new List<ErrorResponse>();
 
             try
             {
-                erros = await exception.GetResponseJsonAsync<IEnumerable<ResponseErrorModel>>();
+                erros = await exception.GetResponseJsonAsync<IEnumerable<ErrorResponse>>();
             }
             catch (Exception) {}
 
-            return new ClientResponseModel<T>()
+            return new ClientResponse<T>()
             {
                 StatusCode = exception.Call.HttpResponseMessage.StatusCode,
                 Success = exception.Call.HttpResponseMessage.IsSuccessStatusCode,

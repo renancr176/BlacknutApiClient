@@ -5,6 +5,7 @@ using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
+using BlacknutApiClient.Models.Responses;
 using Flurl.Http;
 
 namespace BlacknutApiClient.Services
@@ -18,9 +19,9 @@ namespace BlacknutApiClient.Services
             _client = client;
         }
 
-        public async Task<ClientResponseModel<PaginationModel<GameModel>>> GetAsync(PagedRequest request)
+        public async Task<ClientResponse<PaginationModel<GameModel>>> GetAsync(PagedRequest request)
         {
-            var response = new ClientResponseModel<PaginationModel<GameModel>>();
+            var response = new ClientResponse<PaginationModel<GameModel>>();
 
             try
             {
@@ -41,9 +42,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<GameModel>> GetByIdAsync(Guid id)
+        public async Task<ClientResponse<GameModel>> GetByIdAsync(Guid id)
         {
-            var response = new ClientResponseModel<GameModel>();
+            var response = new ClientResponse<GameModel>();
 
             try
             {

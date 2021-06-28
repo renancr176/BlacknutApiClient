@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
+using BlacknutApiClient.Models.Responses;
 
 namespace BlacknutApiClient.Interfaces.Services
 {
@@ -16,13 +17,13 @@ namespace BlacknutApiClient.Interfaces.Services
         /// </summary>
         /// <param name="model"></param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> CreateAsync(SubscriptionCreateRequest request);
+        Task<ClientResponse<SubscriptionModel>> CreateAsync(SubscriptionCreateRequest request);
         /// <summary>
         /// Get subscription by id
         /// </summary>
         /// <param name="id">This is the Blacknut subscription UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> GetByIdAsync(Guid id);
+        Task<ClientResponse<SubscriptionModel>> GetByIdAsync(Guid id);
 
         #region Update product
 
@@ -34,7 +35,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="oldProductID">This is the current product ID subscribed by the user</param>
         /// <param name="newProductID">This is the new product ID to subscribe the user</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> UpdateByIdAsync(Guid id, UpdateProductRequest request);
+        Task<ClientResponse<SubscriptionModel>> UpdateByIdAsync(Guid id, UpdateProductRequest request);
         /// <summary>
         /// Update an existing subscription from subscription Blacknut UUID.
         /// It will cancel the current subscription and create a new one.
@@ -43,7 +44,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="oldProductID">This is the current product ID subscribed by the user</param>
         /// <param name="newProductID">This is the new product ID to subscribe the user</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> UpdateByPartnerIdAsync(Guid partnerID, UpdateProductRequest request);
+        Task<ClientResponse<SubscriptionModel>> UpdateByPartnerIdAsync(Guid partnerID, UpdateProductRequest request);
         /// <summary>
         /// Update an existing subscription from subscription Blacknut UUID.
         /// It will cancel the current subscription and create a new one.
@@ -52,7 +53,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="oldProductID">This is the current product ID subscribed by the user</param>
         /// <param name="newProductID">This is the new product ID to subscribe the user</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> UpdateByRedemptionCodeAsync(string redemptionCode, UpdateProductRequest request);
+        Task<ClientResponse<SubscriptionModel>> UpdateByRedemptionCodeAsync(string redemptionCode, UpdateProductRequest request);
 
         #endregion
 
@@ -63,19 +64,19 @@ namespace BlacknutApiClient.Interfaces.Services
         /// </summary>
         /// <param name="id">This is the Blacknut subscription UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> SuspendByIdAsync(Guid id);
+        Task<ClientResponse<SubscriptionModel>> SuspendByIdAsync(Guid id);
         /// <summary>
         /// Suspend an existing subscription.
         /// </summary>
         /// <param name="partnerID">This is the Partner subscription ID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> SuspendByPartnerIdAsync(Guid partnerID);
+        Task<ClientResponse<SubscriptionModel>> SuspendByPartnerIdAsync(Guid partnerID);
         /// <summary>
         /// Suspend an existing subscription.
         /// </summary>
         /// <param name="redemptionCode">This is the customer redemption code</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> SuspendByRedemptionCodeAsync(string redemptionCode);
+        Task<ClientResponse<SubscriptionModel>> SuspendByRedemptionCodeAsync(string redemptionCode);
 
         #endregion
 
@@ -86,19 +87,19 @@ namespace BlacknutApiClient.Interfaces.Services
         /// </summary>
         /// <param name="id">This is the Blacknut subscription UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> ReactivateByIdAsync(Guid id);
+        Task<ClientResponse<SubscriptionModel>> ReactivateByIdAsync(Guid id);
         /// <summary>
         /// Reactivate a suspended subscription.
         /// </summary>
         /// <param name="partnerID">This is the Partner subscription ID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> ReactivateByPartnerIdAsync(Guid partnerID);
+        Task<ClientResponse<SubscriptionModel>> ReactivateByPartnerIdAsync(Guid partnerID);
         /// <summary>
         /// Reactivate a suspended subscription.
         /// </summary>
         /// <param name="redemptionCode">This is the customer redemption code</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> ReactivateByRedemptionCodeAsync(string redemptionCode);
+        Task<ClientResponse<SubscriptionModel>> ReactivateByRedemptionCodeAsync(string redemptionCode);
 
         #endregion
 
@@ -114,7 +115,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// If it is not given, the endDate will be the current date
         /// </param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> CancelByIdAsync(Guid id, SubscriptionCancelRequest request);
+        Task<ClientResponse<SubscriptionModel>> CancelByIdAsync(Guid id, SubscriptionCancelRequest request);
         /// <summary>
         /// Cancel an active subscription from a field.
         /// </summary>
@@ -125,7 +126,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// If it is not given, the endDate will be the current date
         /// </param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> CancelByPartnerIdAsync(Guid partnerID, SubscriptionCancelRequest request);
+        Task<ClientResponse<SubscriptionModel>> CancelByPartnerIdAsync(Guid partnerID, SubscriptionCancelRequest request);
         /// <summary>
         /// Cancel an active subscription from a field.
         /// </summary>
@@ -136,7 +137,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// If it is not given, the endDate will be the current date
         /// </param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> CancelByRedemptionCodeAsync(string redemptionCode, SubscriptionCancelRequest request);
+        Task<ClientResponse<SubscriptionModel>> CancelByRedemptionCodeAsync(string redemptionCode, SubscriptionCancelRequest request);
 
         #endregion
 
@@ -148,21 +149,21 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="id">This is the Blacknut subscription UUID</param>
         /// <param name="userId">This is the Blacknut user UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> AttachByIdAsync(Guid id, SubscriptionAttachRequest request);
+        Task<ClientResponse<SubscriptionModel>> AttachByIdAsync(Guid id, SubscriptionAttachRequest request);
         /// <summary>
         /// Attach a subscription to a user.
         /// </summary>
         /// <param name="partnerID">This is the Partner subscription ID</param>
         /// <param name="userId">This is the Blacknut user UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> AttachByPartnerIdAsync(Guid partnerID, SubscriptionAttachRequest request);
+        Task<ClientResponse<SubscriptionModel>> AttachByPartnerIdAsync(Guid partnerID, SubscriptionAttachRequest request);
         /// <summary>
         /// Attach a subscription to a user.
         /// </summary>
         /// <param name="redemptionCode">This is the customer current redemption code</param>
         /// <param name="userId">This is the Blacknut user UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<SubscriptionModel>> AttachByRedemptionCodeAsync(string redemptionCode, SubscriptionAttachRequest request);
+        Task<ClientResponse<SubscriptionModel>> AttachByRedemptionCodeAsync(string redemptionCode, SubscriptionAttachRequest request);
 
         #endregion
     }

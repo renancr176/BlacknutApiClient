@@ -5,6 +5,7 @@ using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
+using BlacknutApiClient.Models.Responses;
 using Flurl.Http;
 
 namespace BlacknutApiClient.Services
@@ -18,9 +19,9 @@ namespace BlacknutApiClient.Services
             _client = client;
         }
 
-        public async Task<ClientResponseModel<PaginationModel<UserModel>>> GetAsync(PagedRequest request)
+        public async Task<ClientResponse<PaginationModel<UserModel>>> GetAsync(PagedRequest request)
         {
-            var response = new ClientResponseModel<PaginationModel<UserModel>>();
+            var response = new ClientResponse<PaginationModel<UserModel>>();
 
             try
             {
@@ -41,9 +42,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<UserModel>> SearchAsync(UserSearchRequest request)
+        public async Task<ClientResponse<UserModel>> SearchAsync(UserSearchRequest request)
         {
-            var response = new ClientResponseModel<UserModel>();
+            var response = new ClientResponse<UserModel>();
 
             try
             {
@@ -60,9 +61,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<UserModel>> CreateAsync()
+        public async Task<ClientResponse<UserModel>> CreateAsync()
         {
-            var response = new ClientResponseModel<UserModel>();
+            var response = new ClientResponse<UserModel>();
 
             try
             {
@@ -80,9 +81,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<UserModel>> GetByIdAsync(Guid id)
+        public async Task<ClientResponse<UserModel>> GetByIdAsync(Guid id)
         {
-            var response = new ClientResponseModel<UserModel>();
+            var response = new ClientResponse<UserModel>();
 
             try
             {
@@ -98,9 +99,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<UserModel>> UpdatePartnerIdAsync(Guid id, UpdatePartnerRequest request)
+        public async Task<ClientResponse<UserModel>> UpdatePartnerIdAsync(Guid id, UpdatePartnerRequest request)
         {
-            var response = new ClientResponseModel<UserModel>();
+            var response = new ClientResponse<UserModel>();
 
             try
             {
@@ -118,9 +119,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<IEnumerable<SubscriptionModel>>> GetSubscriptionsAsync(Guid id)
+        public async Task<ClientResponse<IEnumerable<SubscriptionModel>>> GetSubscriptionsAsync(Guid id)
         {
-            var response = new ClientResponseModel<IEnumerable<SubscriptionModel>>();
+            var response = new ClientResponse<IEnumerable<SubscriptionModel>>();
 
             try
             {
@@ -136,9 +137,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<PaginationModel<StreamModel>>> GetStreamsAsync(Guid id, PagedRequest request)
+        public async Task<ClientResponse<PaginationModel<StreamModel>>> GetStreamsAsync(Guid id, PagedRequest request)
         {
-            var response = new ClientResponseModel<PaginationModel<StreamModel>>();
+            var response = new ClientResponse<PaginationModel<StreamModel>>();
 
             try
             {
@@ -159,9 +160,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<IEnumerable<UserModel>>> GetProfilesAsync(Guid id)
+        public async Task<ClientResponse<IEnumerable<UserModel>>> GetProfilesAsync(Guid id)
         {
-            var response = new ClientResponseModel<IEnumerable<UserModel>>();
+            var response = new ClientResponse<IEnumerable<UserModel>>();
 
             try
             {
@@ -177,9 +178,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<UserTokenModel>> CreateTokenAsync(Guid id)
+        public async Task<ClientResponse<UserTokenModel>> CreateTokenAsync(Guid id)
         {
-            var response = new ClientResponseModel<UserTokenModel>();
+            var response = new ClientResponse<UserTokenModel>();
 
             try
             {

@@ -4,6 +4,7 @@ using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
+using BlacknutApiClient.Models.Responses;
 using Flurl.Http;
 
 namespace BlacknutApiClient.Services
@@ -19,9 +20,9 @@ namespace BlacknutApiClient.Services
 
         #region Privates
 
-        private async Task<ClientResponseModel<SubscriptionModel>> UpdateAsync(object data)
+        private async Task<ClientResponse<SubscriptionModel>> UpdateAsync(object data)
         {
-            var response = new ClientResponseModel<SubscriptionModel>();
+            var response = new ClientResponse<SubscriptionModel>();
 
             try
             {
@@ -39,9 +40,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        private async Task<ClientResponseModel<SubscriptionModel>> SuspendAsync(object data)
+        private async Task<ClientResponse<SubscriptionModel>> SuspendAsync(object data)
         {
-            var response = new ClientResponseModel<SubscriptionModel>();
+            var response = new ClientResponse<SubscriptionModel>();
 
             try
             {
@@ -59,9 +60,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        private async Task<ClientResponseModel<SubscriptionModel>> ReactivateAsync(object data)
+        private async Task<ClientResponse<SubscriptionModel>> ReactivateAsync(object data)
         {
-            var response = new ClientResponseModel<SubscriptionModel>();
+            var response = new ClientResponse<SubscriptionModel>();
 
             try
             {
@@ -79,9 +80,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        private async Task<ClientResponseModel<SubscriptionModel>> CancelAsync(object data)
+        private async Task<ClientResponse<SubscriptionModel>> CancelAsync(object data)
         {
-            var response = new ClientResponseModel<SubscriptionModel>();
+            var response = new ClientResponse<SubscriptionModel>();
 
             try
             {
@@ -99,9 +100,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        private async Task<ClientResponseModel<SubscriptionModel>> AttachAsync(object data)
+        private async Task<ClientResponse<SubscriptionModel>> AttachAsync(object data)
         {
-            var response = new ClientResponseModel<SubscriptionModel>();
+            var response = new ClientResponse<SubscriptionModel>();
 
             try
             {
@@ -121,9 +122,9 @@ namespace BlacknutApiClient.Services
 
         #endregion
 
-        public async Task<ClientResponseModel<SubscriptionModel>> CreateAsync(SubscriptionCreateRequest request)
+        public async Task<ClientResponse<SubscriptionModel>> CreateAsync(SubscriptionCreateRequest request)
         {
-            var response = new ClientResponseModel<SubscriptionModel>();
+            var response = new ClientResponse<SubscriptionModel>();
 
             try
             {
@@ -141,9 +142,9 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> GetByIdAsync(Guid id)
+        public async Task<ClientResponse<SubscriptionModel>> GetByIdAsync(Guid id)
         {
-            var response = new ClientResponseModel<SubscriptionModel>();
+            var response = new ClientResponse<SubscriptionModel>();
 
             try
             {
@@ -161,9 +162,9 @@ namespace BlacknutApiClient.Services
 
         #region Update product
 
-        public async Task<ClientResponseModel<SubscriptionModel>> UpdateByIdAsync(Guid id, UpdateProductRequest request)
+        public async Task<ClientResponse<SubscriptionModel>> UpdateByIdAsync(Guid id, UpdateProductRequest request)
         {
-            var response = new ClientResponseModel<SubscriptionModel>();
+            var response = new ClientResponse<SubscriptionModel>();
 
             try
             {
@@ -181,12 +182,12 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> UpdateByPartnerIdAsync(Guid partnerID, UpdateProductRequest request)
+        public async Task<ClientResponse<SubscriptionModel>> UpdateByPartnerIdAsync(Guid partnerID, UpdateProductRequest request)
         {
             return await UpdateAsync(new {partnerID, request.NewProductId, request.OldProductId });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> UpdateByRedemptionCodeAsync(string redemptionCode, UpdateProductRequest request)
+        public async Task<ClientResponse<SubscriptionModel>> UpdateByRedemptionCodeAsync(string redemptionCode, UpdateProductRequest request)
         {
             return await UpdateAsync(new { redemptionCode, request.NewProductId, request.OldProductId });
         }
@@ -195,17 +196,17 @@ namespace BlacknutApiClient.Services
 
         #region Suspend
         
-        public async Task<ClientResponseModel<SubscriptionModel>> SuspendByIdAsync(Guid id)
+        public async Task<ClientResponse<SubscriptionModel>> SuspendByIdAsync(Guid id)
         {
             return await SuspendAsync(new { uuid = id });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> SuspendByPartnerIdAsync(Guid partnerID)
+        public async Task<ClientResponse<SubscriptionModel>> SuspendByPartnerIdAsync(Guid partnerID)
         {
             return await SuspendAsync(new { partnerID });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> SuspendByRedemptionCodeAsync(string redemptionCode)
+        public async Task<ClientResponse<SubscriptionModel>> SuspendByRedemptionCodeAsync(string redemptionCode)
         {
             return await SuspendAsync(new { redemptionCode });
         }
@@ -214,17 +215,17 @@ namespace BlacknutApiClient.Services
 
         #region Reactive
 
-        public async Task<ClientResponseModel<SubscriptionModel>> ReactivateByIdAsync(Guid id)
+        public async Task<ClientResponse<SubscriptionModel>> ReactivateByIdAsync(Guid id)
         {
             return await ReactivateAsync(new { uuid = id });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> ReactivateByPartnerIdAsync(Guid partnerID)
+        public async Task<ClientResponse<SubscriptionModel>> ReactivateByPartnerIdAsync(Guid partnerID)
         {
             return await ReactivateAsync(new { partnerID });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> ReactivateByRedemptionCodeAsync(string redemptionCode)
+        public async Task<ClientResponse<SubscriptionModel>> ReactivateByRedemptionCodeAsync(string redemptionCode)
         {
             return await ReactivateAsync(new { redemptionCode });
         }
@@ -233,17 +234,17 @@ namespace BlacknutApiClient.Services
 
         #region Cancel
 
-        public async Task<ClientResponseModel<SubscriptionModel>> CancelByIdAsync(Guid id, SubscriptionCancelRequest request)
+        public async Task<ClientResponse<SubscriptionModel>> CancelByIdAsync(Guid id, SubscriptionCancelRequest request)
         {
             return await CancelAsync(new { uuid = id, request.EndDate });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> CancelByPartnerIdAsync(Guid partnerID, SubscriptionCancelRequest request)
+        public async Task<ClientResponse<SubscriptionModel>> CancelByPartnerIdAsync(Guid partnerID, SubscriptionCancelRequest request)
         {
             return await CancelAsync(new { partnerID, request.EndDate });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> CancelByRedemptionCodeAsync(string redemptionCode, SubscriptionCancelRequest request)
+        public async Task<ClientResponse<SubscriptionModel>> CancelByRedemptionCodeAsync(string redemptionCode, SubscriptionCancelRequest request)
         {
             return await CancelAsync(new { redemptionCode, request.EndDate });
         }
@@ -252,17 +253,17 @@ namespace BlacknutApiClient.Services
 
         #region Attach
         
-        public async Task<ClientResponseModel<SubscriptionModel>> AttachByIdAsync(Guid id, SubscriptionAttachRequest request)
+        public async Task<ClientResponse<SubscriptionModel>> AttachByIdAsync(Guid id, SubscriptionAttachRequest request)
         {
             return await AttachAsync(new { uuid = id, request.UserId });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> AttachByPartnerIdAsync(Guid partnerID, SubscriptionAttachRequest request)
+        public async Task<ClientResponse<SubscriptionModel>> AttachByPartnerIdAsync(Guid partnerID, SubscriptionAttachRequest request)
         {
             return await AttachAsync(new { partnerID, request.UserId });
         }
 
-        public async Task<ClientResponseModel<SubscriptionModel>> AttachByRedemptionCodeAsync(string redemptionCode, SubscriptionAttachRequest request)
+        public async Task<ClientResponse<SubscriptionModel>> AttachByRedemptionCodeAsync(string redemptionCode, SubscriptionAttachRequest request)
         {
             return await AttachAsync(new { redemptionCode, request.UserId });
         }

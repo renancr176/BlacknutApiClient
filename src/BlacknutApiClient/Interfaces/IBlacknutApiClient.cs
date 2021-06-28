@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using BlacknutApiClient.Models;
+using BlacknutApiClient.Models.Responses;
 using Flurl.Http;
 
 namespace BlacknutApiClient.Interfaces
@@ -10,7 +11,7 @@ namespace BlacknutApiClient.Interfaces
 
         public IFlurlRequest BaseUrl { get; }
 
-        public Task<ClientResponseModel<T>> GetErrorsAsync<T>(FlurlHttpException exception);
+        public Task<ClientResponse<T>> GetErrorsAsync<T>(FlurlHttpException exception);
 
         public Task<PaginationModel<T>> GetPaginationAsync<T>(IFlurlResponse response);
     }
