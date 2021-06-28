@@ -223,7 +223,7 @@ namespace TesteApi.Controllers
             }
         }
 
-        [HttpPost("{id}/Token", Name = "Create a user token for the user")]
+        [HttpGet("{id}/Token", Name = "Create a user token for the user")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<UserTokenModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<UserTokenModel>))]
         public async Task<IActionResult> CreateTokenAsync(Guid id)
