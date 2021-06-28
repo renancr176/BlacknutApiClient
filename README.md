@@ -2,7 +2,7 @@
 
 > :warning: **Development in progress.**
 
-Unofficial client for DotNet, this project map all [Blacknut API](http://www.blacknut.com) endpoints described on documentation version 1.12 from 18-02-2021.
+This project map all [Blacknut API](http://www.blacknut.com) endpoints described on documentation version 1.12 from 18-02-2021.
 
 This project uses [Flurl](https://flurl.dev/) as HTTP client to easily handle the requests.
 
@@ -55,7 +55,7 @@ On Startup add to the ConfigureServices this tow code lines as follow
 
 ## For test
 
-Use this branch only for testing configuration, see Swagger documentation (Maped all client services methods) and see services usage example.
+Use this branch only for testing configuration, Swagger documentation (Maped all client services methods) and services usage examples.
 
 [Test Branch](https://github.com/renancr176/BlacknutApiClient/tree/ToTestOnly)
 
