@@ -26,7 +26,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription/update")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/subscription/update")
                     .PutJsonAsync(data);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -45,7 +45,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription/suspend")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/subscription/suspend")
                     .PutJsonAsync(data);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -64,7 +64,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription/reactivate")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/subscription/reactivate")
                     .PutJsonAsync(data);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -83,7 +83,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription/cancel")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/subscription/cancel")
                     .PutJsonAsync(data);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -102,7 +102,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription/attach")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/subscription/attach")
                     .PutJsonAsync(data);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -123,7 +123,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/subscription")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/subscription")
                     .PostJsonAsync(request);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();
@@ -142,7 +142,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                response.Data = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/subscription/{id}")
+                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/subscription/{id}")
                     .GetJsonAsync<SubscriptionModel>();
             }
             catch (FlurlHttpException e)
@@ -161,7 +161,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment($"/api/v1/partner/subscription/{id}")
+                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/subscription/{id}")
                     .PutJsonAsync(request);
 
                 response.Data = await result.GetJsonAsync<SubscriptionModel>();

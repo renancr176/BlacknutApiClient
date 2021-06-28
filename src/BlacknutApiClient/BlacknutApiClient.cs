@@ -13,21 +13,20 @@ namespace BlacknutApiClient
     public class BlacknutApiClient : IBlacknutApiClient
     {
         public AuthenticationClient AuthenticationClient { get; private set; }
-        public IFlurlRequest BaseUrl => GetBaseUrl();
 
         public BlacknutApiClient(BlacknutCredentials credentials)
         {
             AuthenticationClient = new AuthenticationClient(credentials);
         }
 
-        private IFlurlRequest GetBaseUrl()
+        public async Task<IFlurlRequest> GetBaseUrlAsync()
         {
             if (!AuthenticationClient.AuthenticationData.Authenticated)
             {
-                if(string.IsNullOrEmpty(AuthenticationClient.AuthenticationData.Token))
-                    Task.WaitAll(AuthenticationClient.AuthenticateAsync());
+                if (string.IsNullOrEmpty(AuthenticationClient.AuthenticationData.Token))
+                    await AuthenticationClient.AuthenticateAsync();
                 else
-                    Task.WaitAll(AuthenticationClient.RefreshAsync());
+                    await AuthenticationClient.RefreshAsync();
             }
 
             if (!AuthenticationClient.AuthenticationData.Authenticated)
@@ -44,20 +43,19 @@ namespace BlacknutApiClient
 
         public async Task<ClientResponse<T>> GetErrorsAsync<T>(FlurlHttpException exception)
         {
-            IEnumerable<ErrorResponse> erros = new List<ErrorResponse>();
+            var clientResponse = new ClientResponse<T>()
+            {
+                StatusCode = exception.Call.HttpResponseMessage.StatusCode,
+                Success = exception.Call.HttpResponseMessage.IsSuccessStatusCode
+            };
 
             try
             {
-                erros = await exception.GetResponseJsonAsync<IEnumerable<ErrorResponse>>();
+                clientResponse.Errors = (await exception.GetResponseJsonAsync<ClientResponse<T>>())?.Errors;
             }
             catch (Exception) {}
 
-            return new ClientResponse<T>()
-            {
-                StatusCode = exception.Call.HttpResponseMessage.StatusCode,
-                Success = exception.Call.HttpResponseMessage.IsSuccessStatusCode,
-                Erros = erros
-            };
+            return clientResponse;
         }
 
         public async Task<PaginationModel<T>> GetPaginationAsync<T>(IFlurlResponse response)

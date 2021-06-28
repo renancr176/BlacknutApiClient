@@ -11,6 +11,6 @@ namespace BlacknutApiClient.Models.Responses
         [DefaultValue(true)]
         public bool Success { get; set; } = true;
         public T Data { get; set; }
-        public IEnumerable<ErrorResponse> Erros { get; set; } = new List<ErrorResponse>();
+        public IEnumerable<ErrorResponse> Errors { get; set; } = new List<ErrorResponse>();
     }
 }

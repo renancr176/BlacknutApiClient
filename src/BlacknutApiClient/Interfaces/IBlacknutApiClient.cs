@@ -9,7 +9,7 @@ namespace BlacknutApiClient.Interfaces
     {
         AuthenticationClient AuthenticationClient { get; }
 
-        public IFlurlRequest BaseUrl { get; }
+        public Task<IFlurlRequest> GetBaseUrlAsync();
 
         public Task<ClientResponse<T>> GetErrorsAsync<T>(FlurlHttpException exception);
 
