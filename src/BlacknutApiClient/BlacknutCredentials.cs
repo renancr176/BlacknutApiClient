@@ -13,7 +13,7 @@ namespace BlacknutApiClient
         #region Mandatory Headers
 
         [DisplayName("Content-Type")]
-        public string ContentType { get; private set; } = "application/json";
+        public string ContentType { get; set; } = "application/json";
 
         [DisplayName("Accept-Language")]
         public string AcceptLanguage { get; set; } = "en-US";
