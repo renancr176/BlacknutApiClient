@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models;
+using BlacknutApiClient.Models.Requests;
 using Flurl.Http;
 
 namespace BlacknutApiClient.Services
@@ -17,7 +18,7 @@ namespace BlacknutApiClient.Services
             _client = client;
         }
 
-        public async Task<ClientResponseModel<PaginationModel<GameModel>>> GetAsync(int page = 1, int limit = 50)
+        public async Task<ClientResponseModel<PaginationModel<GameModel>>> GetAsync(PagedRequest request)
         {
             var response = new ClientResponseModel<PaginationModel<GameModel>>();
 
@@ -25,7 +26,7 @@ namespace BlacknutApiClient.Services
             {
                 var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/games")
                     .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
-                    .SetQueryParams(new { page, limit })
+                    .SetQueryParams(request.ParseQueryParams())
                     .GetAsync();
 
                 response.Data = await _client.GetPaginationAsync<GameModel>(result);

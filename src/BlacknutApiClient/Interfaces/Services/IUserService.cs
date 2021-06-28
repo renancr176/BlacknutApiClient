@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlacknutApiClient.Models;
+using BlacknutApiClient.Models.Requests;
 
 namespace BlacknutApiClient.Interfaces.Services
 {
@@ -13,14 +14,14 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="page">This is the page number you want to retrieve</param>
         /// <param name="limit">This is the number of users per page</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<PaginationModel<UserModel>>> GetAsync(int page = 1, int limit = 50);
+        Task<ClientResponseModel<PaginationModel<UserModel>>> GetAsync(PagedRequest request);
         /// <summary>
         /// Search user
         /// </summary>
         /// <param name="partnerId">This is the Partner subscription ID</param>
         /// <param name="email">This is the user email</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<UserModel>> SearchAsync(Guid partnerId, string email);
+        Task<ClientResponseModel<UserModel>> SearchAsync(UserSearchRequest request);
         /// <summary>
         /// Create new user
         /// </summary>
@@ -39,7 +40,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="oldPartnetID">Current partner ID</param>
         /// <param name="newPartnerID">New partner ID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<UserModel>> UpdatePartnerIdAsync(Guid id, Guid oldPartnetID, Guid newPartnerID);
+        Task<ClientResponseModel<UserModel>> UpdatePartnerIdAsync(Guid id, UpdatePartnerRequest request);
         /// <summary>
         /// Get all subscriptions of a user (active and cancelled)
         /// </summary>
@@ -53,7 +54,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="page">This is the page number you want to retrieve</param>
         /// <param name="limit">This is the count of users per page</param>
         /// <returns></returns>
-        Task<ClientResponseModel<PaginationModel<StreamModel>>> GetStreams(Guid id, int page = 1, int limit = 50);
+        Task<ClientResponseModel<PaginationModel<StreamModel>>> GetStreams(Guid id, PagedRequest request);
         /// <summary>
         /// Get profiles/subaccounts of a user
         /// </summary>

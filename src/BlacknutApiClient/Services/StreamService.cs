@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models;
+using BlacknutApiClient.Models.Requests;
 using Flurl.Http;
 
 namespace BlacknutApiClient.Services
@@ -17,16 +18,20 @@ namespace BlacknutApiClient.Services
             _client = client;
         }
 
-        public async Task<ClientResponseModel<PaginationModel<StreamModel>>> GetAsync(int page = 1, int limit = 50, Guid? userId = null, DateTime? startDate = null, DateTime? endDate = null)
+        public async Task<ClientResponseModel<PaginationModel<StreamModel>>> GetAsync(PagedRequest<StreamGetRequest> request)
         {
             var response = new ClientResponseModel<PaginationModel<StreamModel>>();
 
             try
             {
-                var result = await _client.BaseUrl.AppendPathSegment("/api/v1/partner/streams")
+                var requestBuild = _client.BaseUrl.AppendPathSegment("/api/v1/partner/streams")
                     .WithOAuthBearerToken(_client.AuthenticationClient.AuthenticationData.Token)
-                    .SetQueryParams(new { page, limit, userId, startDate, endDate })
-                    .GetAsync();
+                    .SetQueryParams(((PagedRequest)request).ParseQueryParams());
+
+                if (request.Data != null)
+                    requestBuild.SetQueryParams(request.Data.ParseQueryParams());
+
+                var result =  await requestBuild.GetAsync();
 
                 response.Data = await _client.GetPaginationAsync<StreamModel>(result);
                 var streams = await result.GetJsonAsync<IEnumerable<StreamModel>>();

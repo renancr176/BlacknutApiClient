@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using BlacknutApiClient.Models;
+using BlacknutApiClient.Models.Requests;
 
 namespace BlacknutApiClient.Interfaces.Services
 {
@@ -12,7 +13,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="page">This is the page number you want to retrieve</param>
         /// <param name="limit">This is the number of users per page</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<PaginationModel<GameModel>>> GetAsync(int page = 1, int limit = 50);
+        Task<ClientResponseModel<PaginationModel<GameModel>>> GetAsync(PagedRequest request);
         /// <summary>
         /// Get one particular game
         /// </summary>

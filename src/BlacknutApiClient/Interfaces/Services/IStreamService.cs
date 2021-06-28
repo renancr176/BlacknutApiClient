@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using BlacknutApiClient.Models;
+using BlacknutApiClient.Models.Requests;
 
 namespace BlacknutApiClient.Interfaces.Services
 {
@@ -24,7 +25,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// Filters streams started before endDate
         /// </param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponseModel<PaginationModel<StreamModel>>> GetAsync(int page = 1, int limit = 50, Guid? userId = null, DateTime? startDate = null, DateTime? endDate = null);
+        Task<ClientResponseModel<PaginationModel<StreamModel>>> GetAsync(PagedRequest<StreamGetRequest> request);
         /// <summary>
         /// Get one particular stream
         /// </summary>
