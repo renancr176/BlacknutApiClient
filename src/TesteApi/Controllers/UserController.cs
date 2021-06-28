@@ -22,7 +22,7 @@ namespace TesteApi.Controllers
             _userService = userService;
         }
 
-        [HttpGet(Name = "Get all users with paged result")]
+        [HttpPost("GetAll", Name = "Get all users with paged result")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<PaginationModel<UserModel>>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<PaginationModel<UserModel>>))]
         public async Task<IActionResult> GetAsync(PagedRequest request)
@@ -42,12 +42,12 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
-        [HttpGet("search", Name = "Search user by email")]
+        [HttpPost("search", Name = "Search user by email")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<UserModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<UserModel>))]
         public async Task<IActionResult> SearchAsync(UserSearchRequest request)
@@ -67,7 +67,7 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -92,7 +92,7 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -117,12 +117,12 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
         
-        [HttpPut("{id}", Name = "Update user partner Id")]
+        [HttpPut("{id}/partner", Name = "Update partner Id")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<UserModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<UserModel>))]
         public async Task<IActionResult> UpdatePartnerIdAsync(Guid id, UpdatePartnerRequest request)
@@ -142,7 +142,7 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -168,12 +168,12 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
 
-        [HttpGet("{id}/streams", Name = "Get user streams")]
+        [HttpPost("{id}/get-streams", Name = "Get user streams")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<PaginationModel<StreamModel>>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<PaginationModel<StreamModel>>))]
         public async Task<IActionResult> GetStreamsAsync(Guid id, PagedRequest request)
@@ -193,7 +193,7 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -218,7 +218,7 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -243,7 +243,7 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }

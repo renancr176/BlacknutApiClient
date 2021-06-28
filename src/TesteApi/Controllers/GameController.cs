@@ -22,7 +22,7 @@ namespace TesteApi.Controllers
             _gameService = gameService;
         }
 
-        [HttpGet(Name = "List existing games with paged result")]
+        [HttpPost("GetAll", Name = "List existing games with paged result")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<PaginationModel<GameModel>>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<PaginationModel<GameModel>>))]
         public async Task<IActionResult> GetAsync(PagedRequest request)
@@ -42,7 +42,7 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -67,7 +67,7 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
