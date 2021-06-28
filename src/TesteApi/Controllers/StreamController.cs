@@ -42,7 +42,7 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Errors = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
@@ -67,7 +67,7 @@ namespace TesteApi.Controllers
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
-                    Erros = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
+                    Errors = new List<ErrorResponse>() { new ErrorResponse() { Status = $"{(int) HttpStatusCode.BadRequest}", Title = e.Message } }
                 });
             }
         }
