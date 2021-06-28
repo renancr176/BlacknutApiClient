@@ -4,9 +4,9 @@ using System.Net;
 using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models;
+using BlacknutApiClient.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using TesteApi.Models.Requests;
 
 namespace TesteApi.Controllers
 {
@@ -122,15 +122,15 @@ namespace TesteApi.Controllers
             }
         }
 
-        /*
-        [HttpGet("{id}", Name = "Get user by id")]
+        
+        [HttpGet("{id}", Name = "Update user partner Id")]
         [SwaggerResponse(200, Type = typeof(ClientResponseModel<UserModel>))]
         [SwaggerResponse(400, Type = typeof(ClientResponseModel<UserModel>))]
-        private async Task<IActionResult> UpdatePartnerIdAsync()
+        private async Task<IActionResult> UpdatePartnerIdAsync(Guid id, UpdatePartnerRequest request)
         {
             try
             {
-                var result = await _userService.UpdatePartnerIdAsync();
+                var result = await _userService.UpdatePartnerIdAsync(id, request);
 
                 if (result.Success)
                     return Ok(result);
@@ -147,6 +147,32 @@ namespace TesteApi.Controllers
                 });
             }
         }
-        */
+
+
+        [HttpGet("{id}", Name = "Get all subscriptions of a user (active and cancelled)")]
+        [SwaggerResponse(200, Type = typeof(ClientResponseModel<IEnumerable<SubscriptionModel>>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponseModel<IEnumerable<SubscriptionModel>>))]
+        private async Task<IActionResult> GetSubscriptionsAsync(Guid id)
+        {
+            try
+            {
+                var result = await _userService.GetSubscriptions(id);
+
+                if (result.Success)
+                    return Ok(result);
+                else
+                    return StatusCode((int)result.StatusCode, result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ClientResponseModel<IEnumerable<SubscriptionModel>>()
+                {
+                    Success = false,
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Erros = new List<ResponseErrorModel>() { new ResponseErrorModel() { Status = $"{HttpStatusCode.BadRequest}", Title = e.Message } }
+                });
+            }
+        }
+
     }
 }
