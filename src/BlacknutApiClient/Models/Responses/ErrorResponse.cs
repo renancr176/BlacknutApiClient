@@ -1,6 +1,6 @@
-﻿namespace BlacknutApiClient.Models
+﻿namespace BlacknutApiClient.Models.Responses
 {
-    public class ResponseErrorModel
+    public class ErrorResponse
     {
         public string Status { get; set; }
         public string Code { get; set; }
