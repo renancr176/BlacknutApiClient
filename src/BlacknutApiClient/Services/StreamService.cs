@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Interfaces.Services;
-using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
 using BlacknutApiClient.Models.Responses;
 using Flurl.Http;
@@ -19,44 +17,42 @@ namespace BlacknutApiClient.Services
             _client = client;
         }
 
-        public async Task<ClientResponse<PaginationModel<StreamModel>>> GetAsync(PagedRequest<StreamGetRequest> request)
+        public async Task<ClientResponse<StreamsResponse>> GetAsync(PagedRequest<StreamGetRequest> request)
         {
-            var response = new ClientResponse<PaginationModel<StreamModel>>();
+            var response = new ClientResponse<StreamsResponse>();
 
             try
             {
-                var requestBuild = (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/streams")
+                var requestBuild = (await _client.GetBaseUrlAsync())
+                    .AppendPathSegment("/api/v1/partner/streams")
                     .SetQueryParams(((PagedRequest)request).ParseQueryParams());
 
                 if (request.Data != null)
                     requestBuild.SetQueryParams(request.Data.ParseQueryParams());
 
-                var result =  await requestBuild.GetAsync();
-
-                response.Data = await _client.GetPaginationAsync<StreamModel>(result);
-                var streams = await result.GetJsonAsync<IEnumerable<StreamModel>>();
-                response.Data.Data = streams;
+                response.Data = await requestBuild.GetJsonAsync<StreamsResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<PaginationModel<StreamModel>>(e);
+                response = await _client.GetErrorsAsync<StreamsResponse>(e);
             }
 
             return response;
         }
 
-        public async Task<ClientResponse<StreamModel>> GetByIdAsync(Guid id)
+        public async Task<ClientResponse<StreamResponse>> GetByIdAsync(Guid id)
         {
-            var response = new ClientResponse<StreamModel>();
+            var response = new ClientResponse<StreamResponse>();
 
             try
             {
-                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/stream/{id}")
-                    .GetJsonAsync<StreamModel>();
+                response.Data = await (await _client.GetBaseUrlAsync())
+                    .AppendPathSegment($"/api/v1/partner/stream/{id}")
+                    .GetJsonAsync<StreamResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<StreamModel>(e);
+                response = await _client.GetErrorsAsync<StreamResponse>(e);
             }
 
             return response;

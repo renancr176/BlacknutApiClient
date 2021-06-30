@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
 using BlacknutApiClient.Models.Responses;
 
@@ -26,12 +25,14 @@ namespace BlacknutApiClient.Interfaces.Services
         /// Filters streams started before endDate
         /// </param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponse<PaginationModel<StreamModel>>> GetAsync(PagedRequest<StreamGetRequest> request);
+        /// <see cref="StreamsResponse"/>
+        Task<ClientResponse<StreamsResponse>> GetAsync(PagedRequest<StreamGetRequest> request);
         /// <summary>
         /// Get one particular stream
         /// </summary>
         /// <param name="id">This is the Blacknut stream UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponse<StreamModel>> GetByIdAsync(Guid id);
+        /// <see cref="StreamResponse"/>
+        Task<ClientResponse<StreamResponse>> GetByIdAsync(Guid id);
     }
 }
