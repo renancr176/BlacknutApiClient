@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces.Services;
-using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
 using BlacknutApiClient.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -23,8 +22,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPost("GetAll", Name = "Get all users with paged result")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<PaginationModel<UserModel>>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<PaginationModel<UserModel>>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<UsersResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<UsersResponse>))]
         public async Task<IActionResult> GetAsync(PagedRequest request)
         {
             try
@@ -38,7 +37,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<PaginationModel<UserModel>>()
+                return BadRequest(new ClientResponse<UsersResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -48,8 +47,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPost("Search", Name = "Search user by email")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<UserModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<UserModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<UserResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<UserResponse>))]
         public async Task<IActionResult> SearchAsync(UserSearchRequest request)
         {
             try
@@ -63,7 +62,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<UserModel>()
+                return BadRequest(new ClientResponse<UserResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -73,8 +72,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPost(Name = "Create new user")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<UserModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<UserModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<UserResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<UserResponse>))]
         public async Task<IActionResult> CreateAsync()
         {
             try
@@ -88,7 +87,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<UserModel>()
+                return BadRequest(new ClientResponse<UserResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -98,8 +97,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpGet("{id}", Name = "Get user by id")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<UserModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<UserModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<UserResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<UserResponse>))]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             try
@@ -113,7 +112,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<UserModel>()
+                return BadRequest(new ClientResponse<UserResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -123,8 +122,8 @@ namespace TesteApi.Controllers
         }
         
         [HttpPut("{id}/Partner", Name = "Update partner Id")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<UserModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<UserModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<UserResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<UserResponse>))]
         public async Task<IActionResult> UpdatePartnerIdAsync(Guid id, UpdatePartnerRequest request)
         {
             try
@@ -138,7 +137,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<UserModel>()
+                return BadRequest(new ClientResponse<UserResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -147,10 +146,9 @@ namespace TesteApi.Controllers
             }
         }
 
-
         [HttpGet("{id}/Subscriptions", Name = "Get all subscriptions of a user (active and cancelled)")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<IEnumerable<SubscriptionModel>>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<IEnumerable<SubscriptionModel>>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionsResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionsResponse>))]
         public async Task<IActionResult> GetSubscriptionsAsync(Guid id)
         {
             try
@@ -164,7 +162,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<IEnumerable<SubscriptionModel>>()
+                return BadRequest(new ClientResponse<SubscriptionsResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -174,8 +172,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPost("{id}/GetStreams", Name = "Get user streams")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<PaginationModel<StreamModel>>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<PaginationModel<StreamModel>>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<StreamsResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<StreamsResponse>))]
         public async Task<IActionResult> GetStreamsAsync(Guid id, PagedRequest request)
         {
             try
@@ -189,7 +187,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<PaginationModel<StreamModel>>()
+                return BadRequest(new ClientResponse<StreamsResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -199,8 +197,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpGet("{id}/Profiles", Name = "Get profiles/subaccounts of a user")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<IEnumerable<UserModel>>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<IEnumerable<UserModel>>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<UsersResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<UsersResponse>))]
         public async Task<IActionResult> GetProfilesAsync(Guid id)
         {
             try
@@ -214,7 +212,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<IEnumerable<UserModel>>()
+                return BadRequest(new ClientResponse<UsersResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -224,8 +222,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpGet("{id}/Token", Name = "Create a user token for the user")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<UserTokenModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<UserTokenModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<UserTokenResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<UserTokenResponse>))]
         public async Task<IActionResult> CreateTokenAsync(Guid id)
         {
             try
@@ -239,7 +237,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<UserTokenModel>()
+                return BadRequest(new ClientResponse<UserTokenResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,

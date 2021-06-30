@@ -23,8 +23,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPost(Name = "Create a new subscription")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> CreateAsync(SubscriptionCreateRequest request)
         {
             try
@@ -38,7 +38,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -48,8 +48,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpGet("{id}", Name = "Get subscription by id")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             try
@@ -63,7 +63,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -75,8 +75,8 @@ namespace TesteApi.Controllers
         #region Update product
 
         [HttpPut("{id}/Product", Name = "Update an existing subscription from subscription Blacknut UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> UpdateByIdAsync(Guid id, UpdateProductRequest request)
         {
             try
@@ -90,7 +90,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -100,8 +100,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPut("Partner/{id}/Product", Name = "Update an existing subscription from subscription Blacknut UUID by partner UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> UpdateByPartnerIdAsync(Guid id, UpdateProductRequest request)
         {
             try
@@ -115,7 +115,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -125,8 +125,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPut("Redemption/{code}/Product", Name = "Update an existing subscription from subscription Blacknut UUID by redemptionCode")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> UpdateByRedemptionCodeAsync(string code, UpdateProductRequest request)
         {
             try
@@ -140,7 +140,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -154,8 +154,8 @@ namespace TesteApi.Controllers
         #region Suspend
 
         [HttpPut("{id}/Suspend", Name = "Suspend an existing subscription")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> SuspendByIdAsync(Guid id)
         {
             try
@@ -169,7 +169,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -179,8 +179,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPut("Partner/{id}/Suspend", Name = "Suspend an existing subscription by partner UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> SuspendByPartnerIdAsync(Guid id)
         {
             try
@@ -194,7 +194,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -204,8 +204,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPut("Redemption/{code}/Suspend", Name = "Suspend an existing subscription by redemptionCode")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> SuspendByRedemptionCodeAsync(string code)
         {
             try
@@ -219,7 +219,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -233,8 +233,8 @@ namespace TesteApi.Controllers
         #region Reactive
 
         [HttpPut("{id}/Reactive", Name = "Reactivate a suspended subscription")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> ReactivateByIdAsync(Guid id)
         {
             try
@@ -248,7 +248,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -258,8 +258,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPut("Partner/{id}/Reactive", Name = "Reactivate a suspended subscription by partner UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> ReactivateByPartnerIdAsync(Guid id)
         {
             try
@@ -273,7 +273,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -283,8 +283,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPut("Redemption/{code}/Reactive", Name = "Reactivate a suspended subscription by redemptionCode")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> ReactivateByRedemptionCodeAsync(string code)
         {
             try
@@ -298,7 +298,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -312,8 +312,8 @@ namespace TesteApi.Controllers
         #region Cancel
 
         [HttpPut("{id}/Cancel", Name = "Cancel an active subscription from a field")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> CancelByIdAsync(Guid id, SubscriptionCancelRequest request)
         {
             try
@@ -327,7 +327,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -337,8 +337,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPut("Partner/{id}/Cancel", Name = "Cancel an active subscription from a field by partner UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> CancelByPartnerIdAsync(Guid id, SubscriptionCancelRequest request)
         {
             try
@@ -352,7 +352,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -362,8 +362,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPut("Redemption/{code}/Cancel", Name = "Cancel an active subscription from a field by redemptionCode")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> CancelByRedemptionCodeAsync(string code, SubscriptionCancelRequest request)
         {
             try
@@ -377,7 +377,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -391,8 +391,8 @@ namespace TesteApi.Controllers
         #region Attach
 
         [HttpPut("{id}/Attach", Name = "Attach a subscription to a user")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> AttachByIdAsync(Guid id, SubscriptionAttachRequest request)
         {
             try
@@ -406,7 +406,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -416,8 +416,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPut("Partner/{id}/Attach", Name = "Attach a subscription to a user by partner UUID")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> AttachByPartnerIdAsync(Guid id, SubscriptionAttachRequest request)
         {
             try
@@ -431,7 +431,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -441,8 +441,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPut("Redemption/{code}/Attach", Name = "Attach a subscription to a user by redemptionCode")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
         public async Task<IActionResult> AttachByRedemptionCodeAsync(string code, SubscriptionAttachRequest request)
         {
             try
@@ -456,7 +456,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<SubscriptionModel>()
+                return BadRequest(new ClientResponse<SubscriptionResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,

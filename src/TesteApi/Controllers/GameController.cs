@@ -23,8 +23,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPost("GetAll", Name = "List existing games with paged result")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<PaginationModel<GameModel>>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<PaginationModel<GameModel>>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<GamesResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<GamesResponse>))]
         public async Task<IActionResult> GetAsync(PagedRequest request)
         {
             try
@@ -38,7 +38,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<PaginationModel<GameModel>>()
+                return BadRequest(new ClientResponse<GamesResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -48,8 +48,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpGet("{id}", Name = "Get one particular game")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<GameModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<GameModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<GameResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<GameResponse>))]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             try
@@ -63,7 +63,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<GameModel>()
+                return BadRequest(new ClientResponse<GameResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,

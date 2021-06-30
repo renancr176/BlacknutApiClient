@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces.Services;
-using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
 using BlacknutApiClient.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -23,8 +22,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpPost("GetAll", Name = "List existing streams with paged result")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<PaginationModel<StreamModel>>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<PaginationModel<StreamModel>>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<StreamsResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<StreamsResponse>))]
         public async Task<IActionResult> GetAsync(PagedRequest<StreamGetRequest> request)
         {
             try
@@ -38,7 +37,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<PaginationModel<StreamModel>>()
+                return BadRequest(new ClientResponse<StreamsResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
@@ -48,8 +47,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpGet("{id}", Name = "Filters streams started after startDate")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<StreamModel>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<StreamModel>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<StreamResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<StreamResponse>))]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             try
@@ -63,7 +62,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<StreamModel>()
+                return BadRequest(new ClientResponse<StreamResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
