@@ -6,6 +6,146 @@
 	},
 	"item": [
 		{
+			"name": "User Services",
+			"item": [
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/users?page=1&limit=50",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/users/search?partnerId=&email=",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"users",
+								"search"
+							],
+							"query": [
+								{
+									"key": "partnerId",
+									"value": ""
+								},
+								{
+									"key": "email",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{AuthToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
 			"name": "Get Token",
 			"request": {
 				"method": "POST",
@@ -33,7 +173,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"partnerCode\": \"{{PartnerCode}}\",\r\n    \"partnetSecret\": \"{{PartnetSecret}}\"\r\n}",
+					"raw": "{\r\n    \"partnerCode\": \"{{PartnerCode}}\",\r\n    \"partnerSecret\": \"{{PartnerSecret}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -50,6 +190,56 @@
 						"v1",
 						"partner",
 						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					},
+					{
+						"key": "X-Blk-User-Agent",
+						"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+						"type": "text"
+					},
+					{
+						"key": "X-Blk-Partner-Secret",
+						"value": "{{Secret}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refreshToken\": \"{{RefreshToken}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ApiUrl}}/api/v1/partner/refresh",
+					"host": [
+						"{{ApiUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"partner",
+						"refresh"
 					]
 				}
 			},
@@ -90,7 +280,15 @@
 			"value": "secret"
 		},
 		{
-			"key": "PartnetSecret",
+			"key": "PartnerSecret",
+			"value": "secret"
+		},
+		{
+			"key": "AuthToken",
+			"value": "secret"
+		},
+		{
+			"key": "RefreshToken",
 			"value": "secret"
 		}
 	]
