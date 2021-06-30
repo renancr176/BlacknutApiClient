@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Interfaces.Services;
-using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
 using BlacknutApiClient.Models.Responses;
 using Flurl.Http;
@@ -19,170 +17,171 @@ namespace BlacknutApiClient.Services
             _client = client;
         }
 
-        public async Task<ClientResponse<PaginationModel<UserModel>>> GetAsync(PagedRequest request)
+        public async Task<ClientResponse<UsersResponse>> GetAsync(PagedRequest request)
         {
-            var response = new ClientResponse<PaginationModel<UserModel>>();
+            var response = new ClientResponse<UsersResponse>();
 
             try
             {
-                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/users")
+                response.Data = await (await _client.GetBaseUrlAsync())
+                    .AppendPathSegment("/api/v1/partner/users")
                     .SetQueryParams(request.ParseQueryParams())
-                    .GetAsync();
-
-                response.Data = await _client.GetPaginationAsync<UserModel>(result);
-                var users = await result.GetJsonAsync<IEnumerable<UserModel>>();
-                response.Data.Data = users;
+                    .GetJsonAsync<UsersResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<PaginationModel<UserModel>>(e);
+                response = await _client.GetErrorsAsync<UsersResponse>(e);
             }
 
             return response;
         }
 
-        public async Task<ClientResponse<UserModel>> SearchAsync(UserSearchRequest request)
+        public async Task<ClientResponse<UserResponse>> SearchAsync(UserSearchRequest request)
         {
-            var response = new ClientResponse<UserModel>();
+            var response = new ClientResponse<UserResponse>();
 
             try
             {
-                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/users/search")
+                response.Data = await (await _client.GetBaseUrlAsync())
+                    .AppendPathSegment("/api/v1/partner/users/search")
                     .SetQueryParams(request.ParseQueryParams())
-                    .GetJsonAsync<UserModel>();
+                    .GetJsonAsync<UserResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<UserModel>(e);
+                response = await _client.GetErrorsAsync<UserResponse>(e);
             }
 
             return response;
         }
 
-        public async Task<ClientResponse<UserModel>> CreateAsync()
+        public async Task<ClientResponse<UserResponse>> CreateAsync()
         {
-            var response = new ClientResponse<UserModel>();
+            var response = new ClientResponse<UserResponse>();
 
             try
             {
-                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/user")
+                var result = await (await _client.GetBaseUrlAsync())
+                    .AppendPathSegment("/api/v1/partner/user")
                     .PostAsync();
 
-                response.Data = await result.GetJsonAsync<UserModel>();
+                response.Data = await result.GetJsonAsync<UserResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<UserModel>(e);
+                response = await _client.GetErrorsAsync<UserResponse>(e);
             }
 
             return response;
         }
 
-        public async Task<ClientResponse<UserModel>> GetByIdAsync(Guid id)
+        public async Task<ClientResponse<UserResponse>> GetByIdAsync(Guid id)
         {
-            var response = new ClientResponse<UserModel>();
+            var response = new ClientResponse<UserResponse>();
 
             try
             {
-                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}")
-                    .GetJsonAsync<UserModel>();
+                response.Data = await (await _client.GetBaseUrlAsync())
+                    .AppendPathSegment($"/api/v1/partner/user/{id}")
+                    .GetJsonAsync<UserResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<UserModel>(e);
+                response = await _client.GetErrorsAsync<UserResponse>(e);
             }
 
             return response;
         }
 
-        public async Task<ClientResponse<UserModel>> UpdatePartnerIdAsync(Guid id, UpdatePartnerRequest request)
+        public async Task<ClientResponse<UserResponse>> UpdatePartnerIdAsync(Guid id, UpdatePartnerRequest request)
         {
-            var response = new ClientResponse<UserModel>();
+            var response = new ClientResponse<UserResponse>();
 
             try
             {
-                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}/updatePartnerID")
+                var result = await (await _client.GetBaseUrlAsync())
+                    .AppendPathSegment($"/api/v1/partner/user/{id}/updatePartnerID")
                     .PostJsonAsync(request);
 
-                response.Data = await result.GetJsonAsync<UserModel>();
+                response.Data = await result.GetJsonAsync<UserResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<UserModel>(e);
+                response = await _client.GetErrorsAsync<UserResponse>(e);
             }
 
             return response;
         }
 
-        public async Task<ClientResponse<IEnumerable<SubscriptionModel>>> GetSubscriptionsAsync(Guid id)
+        public async Task<ClientResponse<SubscriptionsResponse>> GetSubscriptionsAsync(Guid id)
         {
-            var response = new ClientResponse<IEnumerable<SubscriptionModel>>();
+            var response = new ClientResponse<SubscriptionsResponse>();
 
             try
             {
-                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}/subscriptions")
-                    .GetJsonAsync<IEnumerable<SubscriptionModel>>();
+                response.Data = await (await _client.GetBaseUrlAsync())
+                    .AppendPathSegment($"/api/v1/partner/user/{id}/subscriptions")
+                    .GetJsonAsync<SubscriptionsResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<IEnumerable<SubscriptionModel>>(e);
+                response = await _client.GetErrorsAsync<SubscriptionsResponse>(e);
             }
 
             return response;
         }
 
-        public async Task<ClientResponse<PaginationModel<StreamModel>>> GetStreamsAsync(Guid id, PagedRequest request)
+        public async Task<ClientResponse<StreamsResponse>> GetStreamsAsync(Guid id, PagedRequest request)
         {
-            var response = new ClientResponse<PaginationModel<StreamModel>>();
+            var response = new ClientResponse<StreamsResponse>();
 
             try
             {
-                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}/streams")
-                    .GetAsync();
-
-                response.Data = await _client.GetPaginationAsync<StreamModel>(result);
-                var streams = await result.GetJsonAsync<IEnumerable<StreamModel>>();
-                response.Data.Data = streams;
+                response.Data = await (await _client.GetBaseUrlAsync())
+                    .AppendPathSegment($"/api/v1/partner/user/{id}/streams")
+                    .GetJsonAsync<StreamsResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<PaginationModel<StreamModel>>(e);
+                response = await _client.GetErrorsAsync<StreamsResponse>(e);
             }
 
             return response;
         }
 
-        public async Task<ClientResponse<IEnumerable<UserModel>>> GetProfilesAsync(Guid id)
+        public async Task<ClientResponse<UsersResponse>> GetProfilesAsync(Guid id)
         {
-            var response = new ClientResponse<IEnumerable<UserModel>>();
+            var response = new ClientResponse<UsersResponse>();
 
             try
             {
-                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}/profiles")
-                    .GetJsonAsync<IEnumerable<UserModel>>();
+                response.Data = await (await _client.GetBaseUrlAsync())
+                    .AppendPathSegment($"/api/v1/partner/user/{id}/profiles")
+                    .GetJsonAsync<UsersResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<IEnumerable<UserModel>>(e);
+                response = await _client.GetErrorsAsync<UsersResponse>(e);
             }
 
             return response;
         }
 
-        public async Task<ClientResponse<UserTokenModel>> CreateTokenAsync(Guid id)
+        public async Task<ClientResponse<UserTokenResponse>> CreateTokenAsync(Guid id)
         {
-            var response = new ClientResponse<UserTokenModel>();
+            var response = new ClientResponse<UserTokenResponse>();
 
             try
             {
-                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/user/{id}/token")
+                var result = await (await _client.GetBaseUrlAsync())
+                    .AppendPathSegment($"/api/v1/partner/user/{id}/token")
                     .PostAsync();
 
-                response.Data = await result.GetJsonAsync<UserTokenModel>();
+                response.Data = await result.GetJsonAsync<UserTokenResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<UserTokenModel>(e);
+                response = await _client.GetErrorsAsync<UserTokenResponse>(e);
             }
 
             return response;

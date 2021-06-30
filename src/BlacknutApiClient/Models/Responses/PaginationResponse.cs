@@ -1,8 +1,13 @@
-﻿using System.Collections.Generic;
-
-namespace BlacknutApiClient.Models
+﻿namespace BlacknutApiClient.Models.Responses
 {
-    public class PaginationModel<T>
+    public class PaginationResponse
+    {
+        /// <summary>
+        /// Pagination data
+        /// </summary>
+        public PaginationData Meta { get; set; }
+    }
+    public class PaginationData
     {
         /// <summary>
         /// Number of element per page, default value set to 50.
@@ -32,9 +37,5 @@ namespace BlacknutApiClient.Models
         /// Total count of pages
         /// </summary>
         public int TotalPages { get; set; }
-        /// <summary>
-        /// Data items
-        /// </summary>
-        public IEnumerable<T> Data { get; set; }
     }
 }

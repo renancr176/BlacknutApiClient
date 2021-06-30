@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlacknutApiClient.Extensions;
 using BlacknutApiClient.Interfaces;
-using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Responses;
 using Flurl;
 using Flurl.Http;
@@ -56,14 +54,6 @@ namespace BlacknutApiClient
             catch (Exception) {}
 
             return clientResponse;
-        }
-
-        public async Task<PaginationModel<T>> GetPaginationAsync<T>(IFlurlResponse response)
-        {
-            // TODO: Check how to obtain the "meta" (pagination object) from response.
-            //var pagination = response.ResponseMessage.Headers.GetValues("meta");
-
-            return new PaginationModel<T>();
         }
     }
 }

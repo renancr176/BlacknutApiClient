@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Interfaces.Services;
-using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
 using BlacknutApiClient.Models.Responses;
 using Flurl.Http;
@@ -19,40 +17,36 @@ namespace BlacknutApiClient.Services
             _client = client;
         }
 
-        public async Task<ClientResponse<PaginationModel<GameModel>>> GetAsync(PagedRequest request)
+        public async Task<ClientResponse<GamesResponse>> GetAsync(PagedRequest request)
         {
-            var response = new ClientResponse<PaginationModel<GameModel>>();
+            var response = new ClientResponse<GamesResponse>();
 
             try
             {
-                var result = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/games")
+                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment("/api/v1/partner/games")
                     .SetQueryParams(request.ParseQueryParams())
-                    .GetAsync();
-
-                response.Data = await _client.GetPaginationAsync<GameModel>(result);
-                var users = await result.GetJsonAsync<IEnumerable<GameModel>>();
-                response.Data.Data = users;
+                    .GetJsonAsync<GamesResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<PaginationModel<GameModel>>(e);
+                response = await _client.GetErrorsAsync<GamesResponse>(e);
             }
 
             return response;
         }
 
-        public async Task<ClientResponse<GameModel>> GetByIdAsync(Guid id)
+        public async Task<ClientResponse<GameResponse>> GetByIdAsync(Guid id)
         {
-            var response = new ClientResponse<GameModel>();
+            var response = new ClientResponse<GameResponse>();
 
             try
             {
                 response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/game/{id}")
-                    .GetJsonAsync<GameModel>();
+                    .GetJsonAsync<GameResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<GameModel>(e);
+                response = await _client.GetErrorsAsync<GameResponse>(e);
             }
 
             return response;
