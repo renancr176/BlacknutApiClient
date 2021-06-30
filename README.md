@@ -23,7 +23,7 @@ On appsettings.json add the Blacknut credentials config as follow
 		    "PartnerCredentials": {
 			    "PartnerCode": "",
 			    // The password
-			    "PartnetSecret": ""
+			    "PartnerSecret": ""
 		    },
 		    // Optionals
 		    "AcceptLanguage": "en-US",

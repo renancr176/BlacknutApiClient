@@ -48,12 +48,12 @@ namespace BlacknutApiClient
     public class PartnerCredentials
     {
         public string PartnerCode { get; set; } = String.Empty;
-        public string PartnetSecret { get; set; } = String.Empty;
+        public string PartnerSecret { get; set; } = String.Empty;
 
         public bool Ok()
         {
             if (!string.IsNullOrEmpty(PartnerCode)
-                && !string.IsNullOrEmpty(PartnetSecret))
+                && !string.IsNullOrEmpty(PartnerSecret))
                 return true;
             return false;
         }
