@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace BlacknutApiClient.Models.Requests
 {
+    [JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
     public abstract class BaseQueryParamRequest
     {
         public Dictionary<string, string> ParseQueryParams()
