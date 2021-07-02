@@ -11,7 +11,11 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// Unique ID of the game
         /// </summary>
-        public Guid GlobalId { get; set; }
+        public string GlobalId { get; set; }
+        /// <summary>
+        /// Unique ID of the game
+        /// </summary>
+        public string Uuid { get; set; }
         /// <summary>
         /// Creation date of the game
         /// </summary>
@@ -27,12 +31,9 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// List of supported devices:{computer, phone, tablet, tv}
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty(ItemConverterType = typeof(StringEnumConverter))]
         public IEnumerable<DeviceEnum> Devices { get; set; } = new List<DeviceEnum>();
-        /// <summary>
-        /// Name of the game
-        /// </summary>
-        public string Name { get; set; }
+        
         /// <summary>
         /// List of images describing the game
         /// </summary>
@@ -41,7 +42,10 @@ namespace BlacknutApiClient.Models
         /// True if game is multiplayer
         /// </summary>
         public bool Multiplayer { get; set; }
-
+        /// <summary>
+        /// Name of the game
+        /// </summary>
+        public string Name { get; set; }
         public string Publisher { get; set; }
         public string Rating { get; set; }
         public IEnumerable<MediaModel> Videos { get; set; }
