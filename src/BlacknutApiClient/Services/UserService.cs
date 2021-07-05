@@ -54,7 +54,7 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponse<UserResponse>> CreateAsync()
+        public async Task<ClientResponse<UserResponse>> CreateAsync(UserCreateRequest request)
         {
             var response = new ClientResponse<UserResponse>();
 
@@ -62,7 +62,7 @@ namespace BlacknutApiClient.Services
             {
                 var result = await (await _client.GetBaseUrlAsync())
                     .AppendPathSegment("/api/v1/partner/user")
-                    .PostAsync();
+                    .PostJsonAsync(request);
 
                 response.Data = await result.GetJsonAsync<UserResponse>();
             }
