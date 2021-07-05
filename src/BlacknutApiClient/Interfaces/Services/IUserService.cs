@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BlacknutApiClient.Models.Requests;
 using BlacknutApiClient.Models.Responses;
 
@@ -35,7 +34,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="id">This is the Blacknut user UUID</param>
         /// <returns>ClientResponseModel</returns>
         /// <see cref="UserResponse"/>
-        Task<ClientResponse<UserResponse>> GetByIdAsync(Guid id);
+        Task<ClientResponse<UserResponse>> GetByIdAsync(string id);
         /// <summary>
         /// Update user partner Id
         /// </summary>
@@ -44,14 +43,14 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="newPartnerID">New partner ID</param>
         /// <returns>ClientResponseModel</returns>
         /// <see cref="UserResponse"/>
-        Task<ClientResponse<UserResponse>> UpdatePartnerIdAsync(Guid id, UpdatePartnerRequest request);
+        Task<ClientResponse<UserResponse>> UpdatePartnerIdAsync(string id, UpdatePartnerRequest request);
         /// <summary>
         /// Get all subscriptions of a user (active and cancelled)
         /// </summary>
         /// <param name="id">This is the Blacknut user UUID</param>
         /// <returns>ClientResponseModel</returns>
         /// <see cref="SubscriptionsResponse"/>
-        Task<ClientResponse<SubscriptionsResponse>> GetSubscriptionsAsync(Guid id);
+        Task<ClientResponse<SubscriptionsResponse>> GetSubscriptionsAsync(string id);
         /// <summary>
         /// Get user streams
         /// </summary>
@@ -60,19 +59,19 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="limit">This is the count of users per page</param>
         /// <returns>ClientResponse</returns>
         /// <see cref="SubscriptionsResponse"/>
-        Task<ClientResponse<StreamsResponse>> GetStreamsAsync(Guid id, PagedRequest request);
+        Task<ClientResponse<StreamsResponse>> GetStreamsAsync(string id, PagedRequest request);
         /// <summary>
         /// Get profiles/subaccounts of a user
         /// </summary>
         /// <param name="id">This is the Blacknut user UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponse<UsersResponse>> GetProfilesAsync(Guid id);
+        Task<ClientResponse<UsersResponse>> GetProfilesAsync(string id);
         /// <summary>
         /// Create a user token for the user.
         /// A user token is necessary to launch a game then.
         /// </summary>
         /// <param name="id">This is the Blacknut user UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponse<UserTokenResponse>> CreateTokenAsync(Guid id);
+        Task<ClientResponse<UserTokenResponse>> CreateTokenAsync(string id);
     }
 }

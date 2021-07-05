@@ -1,13 +1,12 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BlacknutApiClient.Models.Requests
 {
     public class UpdateProductRequest
     {
         [Required]
-        public Guid OldProductId { get; set; }
+        public string OldProductId { get; set; }
         [Required]
-        public Guid NewProductId { get; set; }
+        public string NewProductId { get; set; }
     }
 }

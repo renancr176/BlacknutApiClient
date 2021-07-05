@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models.Requests;
@@ -40,7 +39,7 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponse<StreamResponse>> GetByIdAsync(Guid id)
+        public async Task<ClientResponse<StreamResponse>> GetByIdAsync(string id)
         {
             var response = new ClientResponse<StreamResponse>();
 

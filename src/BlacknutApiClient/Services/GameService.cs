@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces;
 using BlacknutApiClient.Interfaces.Services;
 using BlacknutApiClient.Models.Requests;

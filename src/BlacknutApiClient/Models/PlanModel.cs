@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BlacknutApiClient.Models
+﻿namespace BlacknutApiClient.Models
 {
     public class PlanModel
     {
@@ -11,6 +9,6 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// ID of the subscription plan
         /// </summary>
-        public Guid PublicId { get; set; }
+        public string PublicId { get; set; }
     }
 }

@@ -10,11 +10,11 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// Unique ID of the subscription
         /// </summary>
-        public Guid Uuid { get; set; }
+        public string Uuid { get; set; }
         /// <summary>
         /// Unique Partner ID of the subscription
         /// </summary>
-        public Guid? PartnetId { get; set; }
+        public string? PartnetId { get; set; }
         /// <summary>
         /// Creation date of the subscription
         /// </summary>
@@ -22,7 +22,7 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// UUID of the user attached to thesubscription
         /// </summary>
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         /// <summary>
         /// Description of the subscription plan
         /// </summary>
