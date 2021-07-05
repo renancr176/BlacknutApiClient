@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
 
 namespace BlacknutApiClient.Models.Requests
 {
@@ -8,7 +7,7 @@ namespace BlacknutApiClient.Models.Requests
         [Required]
         [MinLength(1)]
         public string PartnerId { get; set; }
-        public string Name { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
     }
 }
