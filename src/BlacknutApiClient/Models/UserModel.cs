@@ -10,11 +10,11 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// Unique ID of the user
         /// </summary>
-        public Guid Uuid { get; set; }
+        public string Uuid { get; set; }
         /// <summary>
         /// Unique Partner ID
         /// </summary>
-        public Guid? PartnetID { get; set; }
+        public string? PartnetID { get; set; }
         /// <summary>
         /// Creation date of the subscription
         /// </summary>
@@ -39,6 +39,6 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// If master is false: Unique ID of the mainaccount.
         /// </summary>
-        public Guid? MasterUuid { get; set; }
+        public string? MasterUuid { get; set; }
     }
 }

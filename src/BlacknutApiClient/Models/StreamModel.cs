@@ -10,7 +10,7 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// Unique ID of the launched game
         /// </summary>
-        public Guid GameId { get; set; }
+        public string GameId { get; set; }
         /// <summary>
         /// Unique ID of the launched game
         /// </summary>
@@ -43,7 +43,7 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// UUID of the user that started the stream
         /// </summary>
-        public Guid UserUuid { get; set; }
+        public string UserUuid { get; set; }
         /// <summary>
         /// Email of the user that started the stream
         /// </summary>

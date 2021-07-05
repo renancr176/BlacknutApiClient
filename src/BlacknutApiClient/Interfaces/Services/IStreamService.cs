@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BlacknutApiClient.Models.Requests;
 using BlacknutApiClient.Models.Responses;
 
@@ -33,6 +32,6 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <param name="id">This is the Blacknut stream UUID</param>
         /// <returns>ClientResponseModel</returns>
         /// <see cref="StreamResponse"/>
-        Task<ClientResponse<StreamResponse>> GetByIdAsync(Guid id);
+        Task<ClientResponse<StreamResponse>> GetByIdAsync(string id);
     }
 }

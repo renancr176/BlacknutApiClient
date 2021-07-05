@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BlacknutApiClient.Models.Requests
 {
@@ -9,17 +8,17 @@ namespace BlacknutApiClient.Models.Requests
         /// This is the product ID of the Blacknut plan
         /// </summary>
         [Required]
-        public Guid ProductID { get; set; }
+        public string ProductID { get; set; }
         /// <summary>
         /// This parameter is optional
         /// This is the Blacknut user UUID
         /// </summary>
-        public Guid? UserID { get; set; }
+        public string? UserID { get; set; }
         /// <summary>
         /// This parameter is optional
         /// This is the partner subscription ID
         /// </summary>
-        public Guid? PartnerID { get; set; }
+        public string? PartnerID { get; set; }
         /// <summary>
         /// This parameter is optional
         /// This is the customer redemption code
