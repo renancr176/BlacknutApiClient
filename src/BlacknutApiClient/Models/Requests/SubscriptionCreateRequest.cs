@@ -13,12 +13,12 @@ namespace BlacknutApiClient.Models.Requests
         /// This parameter is optional
         /// This is the Blacknut user UUID
         /// </summary>
-        public string? UserID { get; set; }
+        public string UserID { get; set; }
         /// <summary>
         /// This parameter is optional
         /// This is the partner subscription ID
         /// </summary>
-        public string? PartnerID { get; set; }
+        public string PartnerID { get; set; }
         /// <summary>
         /// This parameter is optional
         /// This is the customer redemption code
