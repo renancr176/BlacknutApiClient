@@ -74,11 +74,11 @@ namespace TesteApi.Controllers
         [HttpPost(Name = "Create new user")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<UserResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<UserResponse>))]
-        public async Task<IActionResult> CreateAsync()
+        public async Task<IActionResult> CreateAsync(UserCreateRequest request)
         {
             try
             {
-                var result = await _userService.CreateAsync();
+                var result = await _userService.CreateAsync(request);
 
                 if (result.Success)
                     return Ok(result);
