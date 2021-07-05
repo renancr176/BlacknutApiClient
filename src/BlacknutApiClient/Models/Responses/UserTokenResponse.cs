@@ -1,7 +1,6 @@
 ﻿namespace BlacknutApiClient.Models.Responses
 {
-    public class UserTokenResponse
+    public class UserTokenResponse : UserTokenModel
     {
-        public UserTokenModel Token { get; set; }
     }
 }

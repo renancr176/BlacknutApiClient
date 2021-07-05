@@ -138,6 +138,7 @@ namespace BlacknutApiClient.Services
             {
                 response.Data = await (await _client.GetBaseUrlAsync())
                     .AppendPathSegment($"/api/v1/partner/user/{id}/streams")
+                    .SetQueryParams(request.ParseQueryParams())
                     .GetJsonAsync<StreamsResponse>();
             }
             catch (FlurlHttpException e)
@@ -148,19 +149,19 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponse<UsersResponse>> GetProfilesAsync(string id)
+        public async Task<ClientResponse<ProfilesResponse>> GetProfilesAsync(string id)
         {
-            var response = new ClientResponse<UsersResponse>();
+            var response = new ClientResponse<ProfilesResponse>();
 
             try
             {
                 response.Data = await (await _client.GetBaseUrlAsync())
                     .AppendPathSegment($"/api/v1/partner/user/{id}/profiles")
-                    .GetJsonAsync<UsersResponse>();
+                    .GetJsonAsync<ProfilesResponse>();
             }
             catch (FlurlHttpException e)
             {
-                response = await _client.GetErrorsAsync<UsersResponse>(e);
+                response = await _client.GetErrorsAsync<ProfilesResponse>(e);
             }
 
             return response;
