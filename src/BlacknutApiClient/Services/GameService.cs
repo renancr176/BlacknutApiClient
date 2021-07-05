@@ -35,7 +35,7 @@ namespace BlacknutApiClient.Services
             return response;
         }
 
-        public async Task<ClientResponse<GameResponse>> GetByIdAsync(Guid id)
+        public async Task<ClientResponse<GameResponse>> GetByIdAsync(string id)
         {
             var response = new ClientResponse<GameResponse>();
 
