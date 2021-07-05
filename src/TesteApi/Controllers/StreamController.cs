@@ -49,7 +49,7 @@ namespace TesteApi.Controllers
         [HttpGet("{id}", Name = "Filters streams started after startDate")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<StreamResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<StreamResponse>))]
-        public async Task<IActionResult> GetByIdAsync(Guid id)
+        public async Task<IActionResult> GetByIdAsync(string id)
         {
             try
             {

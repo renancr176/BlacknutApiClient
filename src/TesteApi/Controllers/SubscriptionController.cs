@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using BlacknutApiClient.Interfaces.Services;
-using BlacknutApiClient.Models;
 using BlacknutApiClient.Models.Requests;
 using BlacknutApiClient.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -50,7 +49,7 @@ namespace TesteApi.Controllers
         [HttpGet("{id}", Name = "Get subscription by id")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
-        public async Task<IActionResult> GetByIdAsync(Guid id)
+        public async Task<IActionResult> GetByIdAsync(string id)
         {
             try
             {
@@ -77,7 +76,7 @@ namespace TesteApi.Controllers
         [HttpPut("{id}/Product", Name = "Update an existing subscription from subscription Blacknut UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
-        public async Task<IActionResult> UpdateByIdAsync(Guid id, UpdateProductRequest request)
+        public async Task<IActionResult> UpdateByIdAsync(string id, UpdateProductRequest request)
         {
             try
             {
@@ -102,7 +101,7 @@ namespace TesteApi.Controllers
         [HttpPut("Partner/{id}/Product", Name = "Update an existing subscription from subscription Blacknut UUID by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
-        public async Task<IActionResult> UpdateByPartnerIdAsync(Guid id, UpdateProductRequest request)
+        public async Task<IActionResult> UpdateByPartnerIdAsync(string id, UpdateProductRequest request)
         {
             try
             {
@@ -156,7 +155,7 @@ namespace TesteApi.Controllers
         [HttpPut("{id}/Suspend", Name = "Suspend an existing subscription")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
-        public async Task<IActionResult> SuspendByIdAsync(Guid id)
+        public async Task<IActionResult> SuspendByIdAsync(string id)
         {
             try
             {
@@ -181,7 +180,7 @@ namespace TesteApi.Controllers
         [HttpPut("Partner/{id}/Suspend", Name = "Suspend an existing subscription by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
-        public async Task<IActionResult> SuspendByPartnerIdAsync(Guid id)
+        public async Task<IActionResult> SuspendByPartnerIdAsync(string id)
         {
             try
             {
@@ -235,7 +234,7 @@ namespace TesteApi.Controllers
         [HttpPut("{id}/Reactive", Name = "Reactivate a suspended subscription")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
-        public async Task<IActionResult> ReactivateByIdAsync(Guid id)
+        public async Task<IActionResult> ReactivateByIdAsync(string id)
         {
             try
             {
@@ -260,7 +259,7 @@ namespace TesteApi.Controllers
         [HttpPut("Partner/{id}/Reactive", Name = "Reactivate a suspended subscription by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
-        public async Task<IActionResult> ReactivateByPartnerIdAsync(Guid id)
+        public async Task<IActionResult> ReactivateByPartnerIdAsync(string id)
         {
             try
             {
@@ -314,7 +313,7 @@ namespace TesteApi.Controllers
         [HttpPut("{id}/Cancel", Name = "Cancel an active subscription from a field")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
-        public async Task<IActionResult> CancelByIdAsync(Guid id, SubscriptionCancelRequest request)
+        public async Task<IActionResult> CancelByIdAsync(string id, SubscriptionCancelRequest request)
         {
             try
             {
@@ -339,7 +338,7 @@ namespace TesteApi.Controllers
         [HttpPut("Partner/{id}/Cancel", Name = "Cancel an active subscription from a field by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
-        public async Task<IActionResult> CancelByPartnerIdAsync(Guid id, SubscriptionCancelRequest request)
+        public async Task<IActionResult> CancelByPartnerIdAsync(string id, SubscriptionCancelRequest request)
         {
             try
             {
@@ -393,7 +392,7 @@ namespace TesteApi.Controllers
         [HttpPut("{id}/Attach", Name = "Attach a subscription to a user")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
-        public async Task<IActionResult> AttachByIdAsync(Guid id, SubscriptionAttachRequest request)
+        public async Task<IActionResult> AttachByIdAsync(string id, SubscriptionAttachRequest request)
         {
             try
             {
@@ -418,7 +417,7 @@ namespace TesteApi.Controllers
         [HttpPut("Partner/{id}/Attach", Name = "Attach a subscription to a user by partner UUID")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<SubscriptionResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<SubscriptionResponse>))]
-        public async Task<IActionResult> AttachByPartnerIdAsync(Guid id, SubscriptionAttachRequest request)
+        public async Task<IActionResult> AttachByPartnerIdAsync(string id, SubscriptionAttachRequest request)
         {
             try
             {
