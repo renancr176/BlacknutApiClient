@@ -25,9 +25,10 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <summary>
         /// Create new user
         /// </summary>
+        /// <param name="request"></param>
         /// <returns>ClientResponseModel</returns>
         /// <see cref="UserResponse"/>
-        Task<ClientResponse<UserResponse>> CreateAsync();
+        Task<ClientResponse<UserResponse>> CreateAsync(UserCreateRequest request);
         /// <summary>
         /// Get user by Id
         /// </summary>
