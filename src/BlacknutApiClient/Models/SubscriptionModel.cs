@@ -14,7 +14,7 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// Unique Partner ID of the subscription
         /// </summary>
-        public string? PartnetId { get; set; }
+        public string? PartnerId { get; set; }
         /// <summary>
         /// Creation date of the subscription
         /// </summary>

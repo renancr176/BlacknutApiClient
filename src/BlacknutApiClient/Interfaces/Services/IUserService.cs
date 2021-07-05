@@ -38,9 +38,8 @@ namespace BlacknutApiClient.Interfaces.Services
         /// <summary>
         /// Update user partner Id
         /// </summary>
-        /// <param name="id">This is the Blacknut user UUID</param>
-        /// <param name="oldPartnetID">Current partner ID</param>
-        /// <param name="newPartnerID">New partner ID</param>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
         /// <returns>ClientResponseModel</returns>
         /// <see cref="UserResponse"/>
         Task<ClientResponse<UserResponse>> UpdatePartnerIdAsync(string id, UpdatePartnerRequest request);

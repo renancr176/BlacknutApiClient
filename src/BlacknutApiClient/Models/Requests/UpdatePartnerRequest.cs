@@ -5,7 +5,7 @@ namespace BlacknutApiClient.Models.Requests
     public class UpdatePartnerRequest
     {
         [Required]
-        public string OldPartnetId { get; set; }
+        public string OldPartnerId { get; set; }
         [Required]
         public string NewPartnerId { get; set; }
     }
