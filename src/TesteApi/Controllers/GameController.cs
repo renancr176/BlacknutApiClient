@@ -50,7 +50,7 @@ namespace TesteApi.Controllers
         [HttpGet("{id}", Name = "Get one particular game")]
         [SwaggerResponse(200, Type = typeof(ClientResponse<GameResponse>))]
         [SwaggerResponse(400, Type = typeof(ClientResponse<GameResponse>))]
-        public async Task<IActionResult> GetByIdAsync(Guid id)
+        public async Task<IActionResult> GetByIdAsync(string id)
         {
             try
             {
