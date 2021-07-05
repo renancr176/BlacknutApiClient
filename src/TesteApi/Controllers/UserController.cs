@@ -197,8 +197,8 @@ namespace TesteApi.Controllers
         }
 
         [HttpGet("{id}/Profiles", Name = "Get profiles/subaccounts of a user")]
-        [SwaggerResponse(200, Type = typeof(ClientResponse<UsersResponse>))]
-        [SwaggerResponse(400, Type = typeof(ClientResponse<UsersResponse>))]
+        [SwaggerResponse(200, Type = typeof(ClientResponse<ProfilesResponse>))]
+        [SwaggerResponse(400, Type = typeof(ClientResponse<ProfilesResponse>))]
         public async Task<IActionResult> GetProfilesAsync(string id)
         {
             try
@@ -212,7 +212,7 @@ namespace TesteApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ClientResponse<UsersResponse>()
+                return BadRequest(new ClientResponse<ProfilesResponse>()
                 {
                     Success = false,
                     StatusCode = HttpStatusCode.BadRequest,
