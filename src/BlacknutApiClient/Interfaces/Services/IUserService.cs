@@ -65,7 +65,7 @@ namespace BlacknutApiClient.Interfaces.Services
         /// </summary>
         /// <param name="id">This is the Blacknut user UUID</param>
         /// <returns>ClientResponseModel</returns>
-        Task<ClientResponse<UsersResponse>> GetProfilesAsync(string id);
+        Task<ClientResponse<ProfilesResponse>> GetProfilesAsync(string id);
         /// <summary>
         /// Create a user token for the user.
         /// A user token is necessary to launch a game then.
