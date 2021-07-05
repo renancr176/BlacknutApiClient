@@ -41,7 +41,7 @@ namespace BlacknutApiClient.Services
 
             try
             {
-                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/game/{id}")
+                response.Data = await (await _client.GetBaseUrlAsync()).AppendPathSegment($"/api/v1/partner/games/{id}")
                     .GetJsonAsync<GameResponse>();
             }
             catch (FlurlHttpException e)
