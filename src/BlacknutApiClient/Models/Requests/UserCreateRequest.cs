@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 
 namespace BlacknutApiClient.Models.Requests
 {
-    [JsonObject]
     public class UserCreateRequest
     {
         [Required]
