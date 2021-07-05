@@ -112,6 +112,343 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"partnerId\": \"string\",\r\n    \"name\": \"string\",\r\n    \"email\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/user",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/user/{{id}}/token",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"user",
+								"{{id}}",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profiles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/user/{{id}}/profiles",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"user",
+								"{{id}}",
+								"profiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Streams",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/user/{{id}}/streams?page=1&limit=50",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"user",
+								"{{id}}",
+								"streams"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subscriptions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/user/{{id}}/subscriptions",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"user",
+								"{{id}}",
+								"subscriptions"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{AuthToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Game Services",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/games?page=1&limit=50",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"games"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/games/{{id}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"games",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"auth": {
