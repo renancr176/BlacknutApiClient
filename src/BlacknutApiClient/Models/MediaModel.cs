@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using BlacknutApiClient.Enums;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace BlacknutApiClient.Models
@@ -23,7 +23,8 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// Media format: {jpeg, png, gif, mp4}
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
         public FormatEnum Format { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }

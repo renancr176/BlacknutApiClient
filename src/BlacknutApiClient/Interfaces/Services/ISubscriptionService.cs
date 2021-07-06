@@ -152,34 +152,5 @@ namespace BlacknutApiClient.Interfaces.Services
         Task<ClientResponse<SubscriptionResponse>> CancelByRedemptionCodeAsync(string redemptionCode, SubscriptionCancelRequest request);
 
         #endregion
-
-        #region Attach
-
-        /// <summary>
-        /// Attach a subscription to a user.
-        /// </summary>
-        /// <param name="id">This is the Blacknut subscription UUID</param>
-        /// <param name="userId">This is the Blacknut user UUID</param>
-        /// <returns>ClientResponseModel</returns>
-        /// <see cref="SubscriptionResponse"/>
-        Task<ClientResponse<SubscriptionResponse>> AttachByIdAsync(string id, SubscriptionAttachRequest request);
-        /// <summary>
-        /// Attach a subscription to a user.
-        /// </summary>
-        /// <param name="partnerID">This is the Partner subscription ID</param>
-        /// <param name="userId">This is the Blacknut user UUID</param>
-        /// <returns>ClientResponseModel</returns>
-        /// <see cref="SubscriptionResponse"/>
-        Task<ClientResponse<SubscriptionResponse>> AttachByPartnerIdAsync(string partnerID, SubscriptionAttachRequest request);
-        /// <summary>
-        /// Attach a subscription to a user.
-        /// </summary>
-        /// <param name="redemptionCode">This is the customer current redemption code</param>
-        /// <param name="userId">This is the Blacknut user UUID</param>
-        /// <returns>ClientResponseModel</returns>
-        /// <see cref="SubscriptionResponse"/>
-        Task<ClientResponse<SubscriptionResponse>> AttachByRedemptionCodeAsync(string redemptionCode, SubscriptionAttachRequest request);
-
-        #endregion
     }
 }

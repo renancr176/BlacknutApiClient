@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using BlacknutApiClient.Enums;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace BlacknutApiClient.Models
@@ -30,7 +30,8 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// Device type used for the stream:{computer, phone, tablet, tv}
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
         public DeviceEnum Device { get; set; }
         /// <summary>
         /// Stream provider name

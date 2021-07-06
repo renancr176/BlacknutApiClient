@@ -1,7 +1,6 @@
 ﻿namespace BlacknutApiClient.Models.Responses
 {
-    public class SubscriptionResponse
+    public class SubscriptionResponse : SubscriptionModel
     {
-        public SubscriptionModel Subscription { get; set; }
     }
 }

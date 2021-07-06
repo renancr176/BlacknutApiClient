@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using BlacknutApiClient.Enums;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace BlacknutApiClient.Models
@@ -19,6 +19,10 @@ namespace BlacknutApiClient.Models
         /// Creation date of the subscription
         /// </summary>
         public DateTime CreatedAt { get; set; }
+        /// <summary>
+        /// Unknow
+        /// </summary>
+        public string Kind { get; set; }
         /// <summary>
         /// UUID of the user attached to thesubscription
         /// </summary>
@@ -42,7 +46,8 @@ namespace BlacknutApiClient.Models
         /// <summary>
         /// Status of the subscription:{Pending, Active, Suspended, Canceled}
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
         public SubscriptionStatusEnum Status { get; set; }
     }
 }
