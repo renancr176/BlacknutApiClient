@@ -22,7 +22,7 @@
 								"type": "text"
 							},
 							{
-								"key": "Accept-Language",
+								"key": "Accept-Languagea",
 								"value": "en-US",
 								"type": "text"
 							},
@@ -445,6 +445,294 @@
 								"partner",
 								"games",
 								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{AuthToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Subscription Services",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productID\": \"\",\r\n    \"userID\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/subscription",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/subscription/{{id}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"subscription",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productID\": \"\",\r\n    \"userID\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/subscription/update",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"subscription",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Suspend",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uuid\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/subscription/suspend",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"subscription",
+								"suspend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reactivate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uuid\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/subscription/reactivate",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"subscription",
+								"reactivate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Languagea",
+								"value": "en-US",
+								"type": "text"
+							},
+							{
+								"key": "X-Blk-User-Agent",
+								"value": "Blacknut/5.0.0 {{PartnerCode}}/1.0.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uuid\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/v1/partner/subscription/cancel",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner",
+								"subscription",
+								"cancel"
 							]
 						}
 					},

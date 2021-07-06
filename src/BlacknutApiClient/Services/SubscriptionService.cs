@@ -240,24 +240,5 @@ namespace BlacknutApiClient.Services
         }
 
         #endregion
-
-        #region Attach
-        
-        public async Task<ClientResponse<SubscriptionResponse>> AttachByIdAsync(string id, SubscriptionAttachRequest request)
-        {
-            return await AttachAsync(new { uuid = id, request.UserId });
-        }
-
-        public async Task<ClientResponse<SubscriptionResponse>> AttachByPartnerIdAsync(string partnerID, SubscriptionAttachRequest request)
-        {
-            return await AttachAsync(new { partnerID, request.UserId });
-        }
-
-        public async Task<ClientResponse<SubscriptionResponse>> AttachByRedemptionCodeAsync(string redemptionCode, SubscriptionAttachRequest request)
-        {
-            return await AttachAsync(new { redemptionCode, request.UserId });
-        }
-
-        #endregion
     }
 }
