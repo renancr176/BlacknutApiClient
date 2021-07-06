@@ -29,6 +29,9 @@ On appsettings.json add the Blacknut credentials config as follow
 	    }
     }
 
+- [See appsettings.json structure example](../ToTestOnly/src/TesteApi/appsettings.json)
+- [See appsettings.Development.json structure example](../ToTestOnly/src/TesteApi/appsettings.Development.json)
+
 ### 2nd - API Startup
 
 On Startup add to the ConfigureServices this tow code lines as follow
@@ -39,7 +42,6 @@ On Startup add to the ConfigureServices this tow code lines as follow
 		services.BlacknutApiClientRegisterServices();
 	}
 
-
 ## Available services
 
  - [User](src/BlacknutApiClient/Interfaces/Services/IUserService.cs)
@@ -47,7 +49,7 @@ On Startup add to the ConfigureServices this tow code lines as follow
  - [Stream](src/BlacknutApiClient/Interfaces/Services/IStreamService.cs)
  - [Game](src/BlacknutApiClient/Interfaces/Services/IGameService.cs)
 
-## Test Authentication
+## Test Blacknut Authentication and more
 
 [Blacknut API.postman_collection.json](docs/Blacknut%20API.postman_collection.json)
 
