@@ -29,8 +29,8 @@ On appsettings.json add the Blacknut credentials config as follow
 	    }
     }
 
-- [See appsettings.json structure example](ToTestOnly/src/TesteApi/appsettings.json)
-- [See appsettings.Development.json structure example](ToTestOnly/src/TesteApi/appsettings.Development.json)
+- [See appsettings.json structure example](../ToTestOnly/src/TesteApi/appsettings.json)
+- [See appsettings.Development.json structure example](../ToTestOnly/src/TesteApi/appsettings.Development.json)
 
 ### 2nd - API Startup
 
