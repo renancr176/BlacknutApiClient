@@ -4,6 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/renancr176/BlacknutApiClient</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/renancr176/BlacknutApiClient</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Authors>Renan de Carvalho Ribeiro</Authors>
+    <Company />
+    <Product>BlacknutApiClient</Product>
   </PropertyGroup>
 
   <ItemGroup>
