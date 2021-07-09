@@ -1,7 +1,3 @@
-# Install
-
-[From nuget.org](https://www.nuget.org/packages/BlacknutApiClient/1.0.0)
-
 # About
 
 This project map all [Blacknut API](http://www.blacknut.com) endpoints described on documentation version 1.12 from 18-02-2021.
